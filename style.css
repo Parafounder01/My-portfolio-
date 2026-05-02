@@ -177,7 +177,7 @@ body {
     color: var(--accent-yellow);
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    font-family: monospace;
+    font-family: 'Google Sans Code', monospace;
 }
 
 .hero-name {
@@ -471,7 +471,7 @@ body {
 }
 
 .project-tag {
-    font-family: monospace;
+    font-family: 'Google Sans Code', monospace;
     color: var(--accent-color);
     font-size: 0.8rem;
 }
@@ -565,7 +565,7 @@ body {
 
 .timeline-date {
     color: var(--accent-color);
-    font-family: monospace;
+    font-family: 'Google Sans Code', monospace;
     font-size: 0.85rem;
     margin-bottom: 0.5rem;
 }
