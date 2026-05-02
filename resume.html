@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anantha Kumar M R - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #1a1a2e;
+            --dark-blue: #16213e;
+            --card-bg: #1f2b47;
+            --green: #468432;
+            --light-green: #9AD872;
+            --yellow: #FFEF91;
+            --orange: #FFA02E;
+            --white: #ffffff;
+            --gray: #b0b0b0;
+            --text-light: #e8e8e8;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: var(--navy);
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--green);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--light-green);
+            margin-bottom: 12px;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .contact-bar span { display: flex; align-items: center; gap: 6px; }
+        .contact-bar a { color: var(--orange); text-decoration: none; }
+        .contact-bar a:hover { color: var(--light-green); }
+        .contact-bar i { color: var(--green); font-size: 0.9rem; }
+
+        .summary {
+            background: var(--dark-blue);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--teal);
+        }
+
+        .summary p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i { color: var(--light-green); font-size: 1.1rem; }
+
+        .section { margin-bottom: 30px; }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--card-bg);
+            position: relative;
+        }
+
+        .experience-item::before, .education-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .exp-header h3 {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .exp-header .date {
+            font-size: 0.85rem;
+            color: var(--yellow);
+            font-weight: 500;
+        }
+
+        .company {
+            color: var(--orange);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        ul { list-style: none; padding-left: 0; }
+        ul li {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            padding-left: 15px;
+            position: relative;
+        }
+        ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--light-green);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: var(--dark-blue);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--card-bg);
+        }
+
+        .skill-card h4 {
+            color: var(--light-green);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .skill-badge {
+            background: rgba(70, 132, 50, 0.15);
+            color: var(--orange);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(70, 132, 50, 0.3);
+        }
+
+        .cert-item {
+            background: var(--dark-blue);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--yellow);
+        }
+
+        .cert-item h4 {
+            color: var(--white);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .cert-item p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .cert-item .cert-date {
+            color: var(--yellow);
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #1a1a2e;
+                padding: 20px;
+            }
+            .header h1, h2, .exp-header h3, h4 { color: #1a1a2e !important; }
+            .header .subtitle, .company, h2 i { color: #468432 !important; }
+            .contact-bar span { color: #333 !important; }
+            .contact-bar a { color: #468432 !important; }
+            .contact-bar i { color: #9AD872 !important; }
+            .summary { background: #f5f5f5; border-color: #9AD872; }
+            .summary p { color: #333; }
+            .exp-header .date { color: #468432 !important; }
+            ul li { color: #333; }
+            ul li::before { color: #9AD872; }
+            .skill-card { background: #f5f5f5; border-color: #ddd; }
+            .skill-card h4 { color: #16213e !important; }
+            .skill-badge { background: #e8f5e9; color: #468432; border-color: #468432; }
+            .cert-item { background: #f5f5f5; border-color: #FFEF91; }
+            .cert-item h4 { color: #1a1a2e !important; }
+            .cert-item p { color: #333; }
+            .cert-item .cert-date { color: #468432 !important; }
+            .experience-item, .education-item { border-left-color: #ddd; }
+            .experience-item::before, .education-item::before { background: #468432; }
+            h2 { border-bottom-color: #468432 !important; }
+            .header { border-bottom-color: #468432 !important; }
+        }
+
+        @media (max-width: 600px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            body { padding: 20px 15px; }
+            .header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ANANTHA KUMAR M R</h1>
+        <p class="subtitle">Full Stack Web Developer | IT Operations Professional</p>
+        <div class="contact-bar">
+            <span><i class="fas fa-envelope"></i> <a href="mailto:anantharengarajan98@zohomail.in">anantharengarajan98@zohomail.in</a></span>
+            <span><i class="fas fa-phone"></i> +91-8754681172</span>
+            <span><i class="fas fa-map-marker-alt"></i> Trichy, Tamil Nadu</span>
+            <span><i class="fab fa-github"></i> <a href="https://github.com/Parafounder01" target="_blank">Parafounder01</a></span>
+        </div>
+    </div>
+
+    <div class="summary">
+        <p>Results-driven Technical Professional with B.E. in Electronics and Communication Engineering and 1.5+ years of hands-on experience in IT operations, system administration, and data analysis. Skilled in MS Excel, SQL, Python, Linux, and web development. Proven ability to make real-time operational decisions, manage 24/7 infrastructure, and communicate effectively with stakeholders.</p>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-briefcase"></i> EXPERIENCE</h2>
+
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Technical Assistant (IT Operations & Infrastructure Management)</h3>
+                <span class="date">May 2024 - Present</span>
+            </div>
+            <p class="company">SRM TRP Engineering College, Trichy</p>
+            <ul>
+                <li>Manage continuous IT infrastructure for 60+ workstations across multiple labs</li>
+                <li>Analyze system logs using Python; create Excel reports with Pivot Tables & charts</li>
+                <li>Resolve TCP/IP, DNS, DHCP issues in real-time, reducing network downtime by 40%</li>
+                <li>Monitor license servers, user access logs, and optimize resource allocation</li>
+                <li>Maintain incident logs and present findings to management for process improvements</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Technical Trainer & Operations Coordinator</h3>
+                <span class="date">July 2023 - May 2024</span>
+            </div>
+            <p class="company">Nivedita InfoTech, Trichy</p>
+            <ul>
+                <li>Analyzed trainee performance data using Excel pivot tables to identify skill gaps</li>
+                <li>Implemented Python-based workflows for system monitoring and task automation</li>
+                <li>Trained 20+ professionals through clear verbal and written technical guidance</li>
+                <li>Created detailed documentation for system configurations and troubleshooting</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Technical Apprentice (Systems Testing & QA)</h3>
+                <span class="date">July 2018 - July 2019</span>
+            </div>
+            <p class="company">Indus Teqsite Pvt Ltd, Chennai</p>
+            <ul>
+                <li>Conducted systematic testing of Integrated Fire Control System</li>
+                <li>Tested RS-422 and RS-232 communications protocols for data integrity</li>
+                <li>Documented findings for compliance and regulatory audit requirements</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-code"></i> TECHNICAL SKILLS</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h4>Frontend</h4>
+                <div class="skill-list">
+                    <span class="skill-badge">HTML</span>
+                    <span class="skill-badge">CSS</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">React.js</span>
+                    <span class="skill-badge">Bootstrap</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h4>Backend</h4>
+                <div class="skill-list">
+                    <span class="skill-badge">Node.js</span>
+                    <span class="skill-badge">Express.js</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Bash</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h4>Database</h4>
+                <div class="skill-list">
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">SQL</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h4>Data Analysis</h4>
+                <div class="skill-list">
+                    <span class="skill-badge">MS Excel</span>
+                    <span class="skill-badge">Pandas</span>
+                    <span class="skill-badge">NumPy</span>
+                    <span class="skill-badge">VLOOKUP</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h4>Tools & Platforms</h4>
+                <div class="skill-list">
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">GitHub</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">n8n</span>
+                    <span class="skill-badge">VS Code</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h4>Networking & OS</h4>
+                <div class="skill-list">
+                    <span class="skill-badge">Linux</span>
+                    <span class="skill-badge">TCP/IP</span>
+                    <span class="skill-badge">DNS</span>
+                    <span class="skill-badge">DHCP</span>
+                    <span class="skill-badge">Wireshark</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-graduation-cap"></i> EDUCATION</h2>
+        <div class="education-item">
+            <div class="exp-header">
+                <h3>B.E. Electronics & Communication Engineering</h3>
+                <span class="date">2019 - 2022</span>
+            </div>
+            <p class="company">Saranathan College of Engineering, Trichy | CGPA: 8.27/10</p>
+        </div>
+        <div class="education-item">
+            <div class="exp-header">
+                <h3>Diploma in Electronics & Communication Engineering</h3>
+                <span class="date">2015 - 2018</span>
+            </div>
+            <p class="company">SIT Trichy | Percentage: 79.92%</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><i class="fas fa-certificate"></i> CERTIFICATIONS</h2>
+        <div class="cert-item">
+            <h4>Embedded Systems & Linux Administration</h4>
+            <p>Vector India, Chennai — Linux system programming, process management, real-time monitoring, system optimization</p>
+            <p class="cert-date">Dec 2022 - July 2023</p>
+        </div>
+    </div>
+</body>
+</html>
