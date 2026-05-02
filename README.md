@@ -1,4 +1,4 @@
-# 🌐 Annantha Kumar M R — Full Stack Web Developer Portfolio
+# 🌐 Anantha Kumar M R — Full Stack Web Developer Portfolio
 
 <p align="center">
   <img src="https://img.shields.io/badge/Live-HTTPS-success?style=for-the-badge">
