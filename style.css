@@ -11,29 +11,28 @@
     box-sizing: border-box;
 }
 
-/* ---------- 3D BACKGROUND (Sketchfab Terminator Rev 9) ---------- */
+/* ---------- 3D BACKGROUND (Terminator Rev 9) — hero only ---------- */
 #bg3d {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: 0;
     overflow: hidden;
-    pointer-events: none;          /* allow clicks to pass through */
+    pointer-events: none;
 }
 
 #bg3d iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 110vw;                  /* slightly oversize to hide edge gaps when rotated */
-    height: 110vh;
+    width: 120%;
+    height: 120%;
     transform: translate(-50%, -50%);
     border: 0;
 }
 
-/* Dark gradient overlay — ensures all text stays readable */
+/* Dark gradient overlay — ensures hero text stays readable */
 .bg3d-overlay {
     position: absolute;
     inset: 0;
