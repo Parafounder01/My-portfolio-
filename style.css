@@ -877,24 +877,15 @@ a {
 }
 
 .timeline-bullets {
-    list-style: none;
-    padding: 0;
+    list-style: disc;
+    padding-left: var(--space-4);
 }
 
 .timeline-bullets li {
     color: var(--color-graphite);
     font-size: 15px;
     margin-bottom: 4px;
-    padding-left: var(--space-2);
-    position: relative;
     line-height: 1.6;
-}
-
-.timeline-bullets li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--color-stone);
 }
 
 /* Education */
