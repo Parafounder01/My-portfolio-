@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anantha Kumar M R — Full Stack Developer Portfolio</title>
-    <meta name="description" content="Full Stack Web Developer specializing in responsive web applications, React, Node.js, and modern web technologies. Seeking internship opportunities." />
+    <title>Anantha Kumar M R — Full Stack Developer</title>
+    <meta name="description" content="Full Stack Web Developer building responsive web applications with React, Node.js, and modern web technologies." />
     <meta name="keywords" content="Full Stack Developer, Web Developer, React, Node.js, Portfolio" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Anantha Kumar M R — Full Stack Developer" />
-    <meta property="og:description" content="Aspiring Full Stack Web Developer — building responsive, user-friendly web applications." />
+    <meta property="og:description" content="Building responsive, user-friendly web applications." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://Parafounder01.github.io/My-portfolio-/" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -26,27 +26,31 @@
 </head>
 <body>
 
-    <!-- ==================== NAVBAR ==================== -->
-    <header class="navbar" role="banner">
-        <nav class="nav-container container" role="navigation" aria-label="Main navigation">
-            <a href="#home" class="logo" aria-label="Home">Anantha<span class="logo-accent">.dev</span></a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu" role="menubar">
-                <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
-                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
-                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
-                <li role="none"><a href="#experience" class="nav-link" role="menuitem">Experience</a></li>
-                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- ==================== NAV BAR ==================== -->
+    <header class="nav-bar" role="banner">
+        <div class="container nav-bar-inner">
+            <a href="#home" class="nav-bar-name">Anantha Kumar M R</a>
+            <nav role="navigation" aria-label="Main navigation">
+                <ul class="nav-bar-links" id="navMenu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-bar-actions">
+                <a href="Anantha_kumar_cv (1).pdf" download class="btn-primary">Resume</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- ==================== HERO ==================== -->
-    <section id="home" class="hero">
-        <!-- 3D BACKGROUND (Terminator Rev 9) — hero only -->
+    <!-- ==================== HERO PHOTO ==================== -->
+    <section id="home" class="hero-photo">
+        <!-- 3D Terminator background — cinematic dark photographic layer -->
         <div id="bg3d" aria-hidden="true">
             <iframe
                 title="Terminator Rev 9"
@@ -61,47 +65,40 @@
                 web-share
                 src="https://sketchfab.com/models/b003185904ab44018b330e1c24760e60/embed?autospin=0&autostart=1&ui_theme=dark">
             </iframe>
-            <div class="bg3d-overlay"></div>
+            <div class="hero-photo-overlay"></div>
         </div>
-        <div class="hero-particles" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <div class="container hero-container">
-            <div class="hero-content">
-                <span class="eyebrow">Introducing</span>
-                <h1 class="hero-name">Anantha Kumar M R</h1>
-                <h2 class="hero-title">Full Stack Web Developer</h2>
-                <p class="hero-description">
+        <div class="container">
+            <div class="hero-photo-content">
+                <span class="eyebrow eyebrow-on-dark">Introducing</span>
+                <h1 class="display">Anantha Kumar M R</h1>
+                <p class="subtitle">Full Stack Web Developer</p>
+                <p class="hero-photo-description">
                     I build responsive, user-friendly web applications using modern technologies.
                     Currently seeking a Full Stack Web Development Internship to apply and grow my skills.
                 </p>
-                <div class="hero-buttons">
-                    <a href="Anantha_kumar_cv (1).pdf" download class="btn btn-primary">
+                <div class="hero-photo-actions">
+                    <a href="Anantha_kumar_cv (1).pdf" download class="btn-primary">
                         <i class="fas fa-download" aria-hidden="true"></i> Download Resume
                     </a>
-                    <a href="https://github.com/Parafounder01" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    <a href="https://github.com/Parafounder01" target="_blank" rel="noopener noreferrer" class="btn-ghost-on-dark">
                         <i class="fab fa-github" aria-hidden="true"></i> GitHub
                     </a>
-                    <a href="#contact" class="btn btn-ghost">
+                    <a href="#contact" class="btn-ghost-on-dark">
                         <i class="fas fa-envelope" aria-hidden="true"></i> Contact Me
                     </a>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <span></span>
-        </div>
     </section>
 
     <!-- ==================== ABOUT ==================== -->
-    <section id="about" class="section about">
+    <section id="about" class="section reading-band">
         <div class="container">
             <span class="eyebrow">About</span>
-            <h2 class="section-title">Behind the Code</h2>
+            <h2 class="heading-md">Behind the Code</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p class="about-lead">
+                    <p>
                         I am a passionate Full Stack Web Development learner with hands-on experience
                         in building responsive websites and web applications. I enjoy solving problems,
                         creating clean UI designs, and learning new technologies.
@@ -111,52 +108,43 @@
                         to real-world projects and improve my development skills.
                     </p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <span class="stat-number">1.5+</span>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-value">1.5+</span>
                         <span class="stat-label">Years IT Ops</span>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">B.E.</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">B.E.</span>
                         <span class="stat-label">ECE Degree</span>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">6+</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">6+</span>
                         <span class="stat-label">Tech Skills</span>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-number">3+</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">3+</span>
                         <span class="stat-label">Projects</span>
                     </div>
                 </div>
-                <div class="about-details">
-                    <div class="detail-item">
-                        <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <div>
-                            <h4>Education</h4>
-                            <p>B.E. Electronics & Communication Engineering</p>
-                        </div>
+                <div class="details-list">
+                    <div class="detail-row">
+                        <span class="detail-label">Education</span>
+                        <span class="detail-value">B.E. Electronics &amp; Communication Engineering</span>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-icon"><i class="fas fa-briefcase"></i></div>
-                        <div>
-                            <h4>Experience</h4>
-                            <p>1.5+ Years in IT Operations</p>
-                        </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Experience</span>
+                        <span class="detail-value">1.5+ Years in IT Operations</span>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Trichy, Tamil Nadu, India</p>
-                        </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value">Trichy, Tamil Nadu, India</span>
                     </div>
-                    <div class="detail-item">
-                        <div class="detail-icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>anantharengarajan98@zohomail.in</p>
-                        </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value">anantharengarajan98@zohomail.in</span>
                     </div>
                 </div>
             </div>
@@ -164,14 +152,13 @@
     </section>
 
     <!-- ==================== SKILLS ==================== -->
-    <section id="skills" class="section skills">
+    <section id="skills" class="section reading-band reading-band--warm">
         <div class="container">
             <span class="eyebrow">Expertise</span>
-            <h2 class="section-title">Technical Skills</h2>
+            <h2 class="heading-md">Technical Skills</h2>
             <div class="skills-grid">
-                <div class="skill-category" style="--card-accent: #7a3dff;">
-                    <div class="category-icon"><i class="fas fa-code"></i></div>
-                    <h3>Frontend</h3>
+                <div class="skill-category">
+                    <h3 class="heading-sm">Frontend</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">HTML</span>
                         <span class="skill-tag">CSS</span>
@@ -180,9 +167,8 @@
                         <span class="skill-tag">Bootstrap</span>
                     </div>
                 </div>
-                <div class="skill-category" style="--card-accent: #3b89ff;">
-                    <div class="category-icon"><i class="fas fa-server"></i></div>
-                    <h3>Backend</h3>
+                <div class="skill-category">
+                    <h3 class="heading-sm">Backend</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Node.js</span>
                         <span class="skill-tag">Express.js</span>
@@ -190,18 +176,16 @@
                         <span class="skill-tag">Bash Scripting</span>
                     </div>
                 </div>
-                <div class="skill-category" style="--card-accent: #00d722;">
-                    <div class="category-icon"><i class="fas fa-database"></i></div>
-                    <h3>Database</h3>
+                <div class="skill-category">
+                    <h3 class="heading-sm">Database</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">SQL</span>
                     </div>
                 </div>
-                <div class="skill-category" style="--card-accent: #ff6b00;">
-                    <div class="category-icon"><i class="fas fa-tools"></i></div>
-                    <h3>Tools & Platforms</h3>
+                <div class="skill-category">
+                    <h3 class="heading-sm">Tools &amp; Platforms</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">GitHub</span>
@@ -212,9 +196,8 @@
                         <span class="skill-tag">n8n</span>
                     </div>
                 </div>
-                <div class="skill-category" style="--card-accent: #ed52cb;">
-                    <div class="category-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Data Analysis</h3>
+                <div class="skill-category">
+                    <h3 class="heading-sm">Data Analysis</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">MS Excel</span>
                         <span class="skill-tag">Pandas</span>
@@ -222,9 +205,8 @@
                         <span class="skill-tag">Data Visualization</span>
                     </div>
                 </div>
-                <div class="skill-category" style="--card-accent: #ffae13;">
-                    <div class="category-icon"><i class="fas fa-network-wired"></i></div>
-                    <h3>Networking & Ops</h3>
+                <div class="skill-category">
+                    <h3 class="heading-sm">Networking &amp; Ops</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">TCP/IP</span>
                         <span class="skill-tag">DNS</span>
@@ -238,152 +220,153 @@
     </section>
 
     <!-- ==================== PROJECTS ==================== -->
-    <section id="projects" class="section projects">
+    <section id="projects" class="section reading-band">
         <div class="container">
             <span class="eyebrow">Portfolio</span>
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="heading-md">Featured Projects</h2>
             <div class="projects-grid">
-                <article class="project-card" style="--card-accent: #7a3dff;">
-                    <div class="project-card-top">
-                        <div class="project-icon"><i class="fas fa-vr-cardboard"></i></div>
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <div class="project-thumb-placeholder">
+                            <i class="fas fa-vr-cardboard"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-body">
                         <span class="project-year">2025</span>
-                    </div>
-                    <h3>Virtual Electronics Lab — WebXR</h3>
-                    <p>Immersive 3D electronics laboratory for Meta Quest 2/3 with 20+ circuit types, 20+ components, real-time CRO waveforms, and VR/AR support. Built with Three.js and WebXR API.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Three.js</span>
-                        <span class="project-tag">WebXR</span>
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">Node.js</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://Parafounder01.github.io/AR-VR-mini-project/" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="https://github.com/Parafounder01/AR-VR-mini-project" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <i class="fab fa-github"></i> Source
-                        </a>
+                        <h3 class="heading-sm">Virtual Electronics Lab — WebXR</h3>
+                        <p>Immersive 3D electronics laboratory for Meta Quest 2/3 with 20+ circuit types, 20+ components, real-time CRO waveforms, and VR/AR support. Built with Three.js and WebXR API.</p>
+                        <div class="project-tags">
+                            <span class="skill-tag">Three.js</span>
+                            <span class="skill-tag">WebXR</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://Parafounder01.github.io/AR-VR-mini-project/" target="_blank" rel="noopener noreferrer" class="btn-text-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Parafounder01/AR-VR-mini-project" target="_blank" rel="noopener noreferrer" class="btn-text-link">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        </div>
                     </div>
                 </article>
 
-                <article class="project-card" style="--card-accent: #3b89ff;">
-                    <div class="project-card-top">
-                        <div class="project-icon"><i class="fas fa-robot"></i></div>
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <div class="project-thumb-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-body">
                         <span class="project-year">2025</span>
-                    </div>
-                    <h3>PAVITHRA — AI Agent System</h3>
-                    <p>Advanced AI agent with MCP server architecture for coding, automation, security research, and bot creation. Supports 20 master domains including ethical hacking, hardware integration, and system administration.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">MCP</span>
-                        <span class="project-tag">AI/ML</span>
-                        <span class="project-tag">Automation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Parafounder01/Ai-intergration" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <i class="fab fa-github"></i> Source
-                        </a>
+                        <h3 class="heading-sm">PAVITHRA — AI Agent System</h3>
+                        <p>Advanced AI agent with MCP server architecture for coding, automation, security research, and bot creation. Supports 20 master domains including ethical hacking, hardware integration, and system administration.</p>
+                        <div class="project-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">MCP</span>
+                            <span class="skill-tag">AI/ML</span>
+                            <span class="skill-tag">Automation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Parafounder01/Ai-intergration" target="_blank" rel="noopener noreferrer" class="btn-text-link">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        </div>
                     </div>
                 </article>
 
-                <article class="project-card" style="--card-accent: #00d722;">
-                    <div class="project-card-top">
-                        <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <div class="project-thumb-placeholder">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-body">
                         <span class="project-year">2024</span>
-                    </div>
-                    <h3>Infrastructure Monitoring System</h3>
-                    <p>Real-time monitoring for 60+ workstations with automated alerts, Python log analysis, and Excel-based performance reporting with Pivot Tables and charts.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">Linux</span>
-                        <span class="project-tag">Excel</span>
-                        <span class="project-tag">Bash</span>
-                    </div>
-                    <div class="project-links">
-                        <span class="project-link project-link--disabled"><i class="fas fa-lock"></i> Private</span>
+                        <h3 class="heading-sm">Infrastructure Monitoring System</h3>
+                        <p>Real-time monitoring for 60+ workstations with automated alerts, Python log analysis, and Excel-based performance reporting with Pivot Tables and charts.</p>
+                        <div class="project-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Excel</span>
+                            <span class="skill-tag">Bash</span>
+                        </div>
+                        <div class="project-links">
+                            <span class="project-link--disabled"><i class="fas fa-lock"></i> Private</span>
+                        </div>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- ==================== EXPERIENCE / RESUME ==================== -->
-    <section id="experience" class="section experience">
+    <!-- ==================== EXPERIENCE ==================== -->
+    <section id="experience" class="section reading-band reading-band--warm">
         <div class="container">
             <span class="eyebrow">Career</span>
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline-wrapper">
-                <!-- Item 1 -->
+            <h2 class="heading-md">Work Experience</h2>
+            <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">May 2024 — Present</span>
-                            <span class="timeline-badge">Current</span>
-                        </div>
-                        <h3>Technical Assistant <span class="timeline-company">— SRM TRP Engineering College</span></h3>
-                        <p class="timeline-location">Trichy</p>
-                        <ul class="timeline-bullets">
-                            <li>Manage IT infrastructure for 60+ workstations across multiple labs</li>
-                            <li>Analyze system logs using Python; create Excel reports with Pivot Tables</li>
-                            <li>Resolve TCP/IP, DNS, DHCP issues, reducing downtime by 40%</li>
-                            <li>Monitor license servers and optimize resource allocation</li>
-                        </ul>
+                    <div class="timeline-meta">
+                        <span class="timeline-date">May 2024 — Present</span>
+                        <span class="timeline-badge">Current</span>
                     </div>
+                    <h3 class="heading-sm">Technical Assistant <span class="timeline-company">— SRM TRP Engineering College</span></h3>
+                    <p class="timeline-location">Trichy</p>
+                    <ul class="timeline-bullets">
+                        <li>Manage IT infrastructure for 60+ workstations across multiple labs</li>
+                        <li>Analyze system logs using Python; create Excel reports with Pivot Tables</li>
+                        <li>Resolve TCP/IP, DNS, DHCP issues, reducing downtime by 40%</li>
+                        <li>Monitor license servers and optimize resource allocation</li>
+                    </ul>
                 </div>
-                <!-- Item 2 -->
+                <div class="timeline-hairline"></div>
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">July 2023 — May 2024</span>
-                        </div>
-                        <h3>Technical Trainer & Operations Coordinator <span class="timeline-company">— Nivedita InfoTech</span></h3>
-                        <p class="timeline-location">Trichy</p>
-                        <ul class="timeline-bullets">
-                            <li>Analyzed trainee performance data using Excel pivot tables</li>
-                            <li>Implemented Python-based workflows for system monitoring</li>
-                            <li>Trained 20+ professionals through clear technical guidance</li>
-                        </ul>
+                    <div class="timeline-meta">
+                        <span class="timeline-date">July 2023 — May 2024</span>
                     </div>
+                    <h3 class="heading-sm">Technical Trainer &amp; Operations Coordinator <span class="timeline-company">— Nivedita InfoTech</span></h3>
+                    <p class="timeline-location">Trichy</p>
+                    <ul class="timeline-bullets">
+                        <li>Analyzed trainee performance data using Excel pivot tables</li>
+                        <li>Implemented Python-based workflows for system monitoring</li>
+                        <li>Trained 20+ professionals through clear technical guidance</li>
+                    </ul>
                 </div>
-                <!-- Item 3 -->
+                <div class="timeline-hairline"></div>
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">July 2018 — July 2019</span>
-                        </div>
-                        <h3>Technical Apprentice (Systems Testing & QA) <span class="timeline-company">— Indus Teqsite Pvt Ltd</span></h3>
-                        <p class="timeline-location">Chennai</p>
-                        <ul class="timeline-bullets">
-                            <li>Conducted testing of Integrated Fire Control System</li>
-                            <li>Tested RS-422 and RS-232 communications protocols</li>
-                            <li>Documented findings for compliance and regulatory audits</li>
-                        </ul>
+                    <div class="timeline-meta">
+                        <span class="timeline-date">July 2018 — July 2019</span>
                     </div>
+                    <h3 class="heading-sm">Technical Apprentice (Systems Testing &amp; QA) <span class="timeline-company">— Indus Teqsite Pvt Ltd</span></h3>
+                    <p class="timeline-location">Chennai</p>
+                    <ul class="timeline-bullets">
+                        <li>Conducted testing of Integrated Fire Control System</li>
+                        <li>Tested RS-422 and RS-232 communications protocols</li>
+                        <li>Documented findings for compliance and regulatory audits</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Education -->
-            <div class="education-section">
-                <h3 class="subsection-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+            <div class="education-block">
+                <h3 class="heading-sm">Education</h3>
                 <div class="edu-grid">
                     <div class="edu-card">
                         <span class="edu-date">2019 — 2022</span>
-                        <h4>B.E. Electronics & Communication Engineering</h4>
+                        <h4>B.E. Electronics &amp; Communication Engineering</h4>
                         <p>Saranathan College of Engineering, Trichy</p>
                         <span class="edu-cgpa">CGPA: 8.27/10</span>
                     </div>
                     <div class="edu-card">
                         <span class="edu-date">2015 — 2018</span>
-                        <h4>Diploma in Electronics & Communication Engineering</h4>
+                        <h4>Diploma in Electronics &amp; Communication Engineering</h4>
                         <p>SIT Trichy</p>
                         <span class="edu-cgpa">Percentage: 79.92%</span>
                     </div>
                     <div class="edu-card">
                         <span class="edu-date">Dec 2022 — July 2023</span>
-                        <h4>Embedded Systems & Linux Administration</h4>
+                        <h4>Embedded Systems &amp; Linux Administration</h4>
                         <p>Vector India, Chennai</p>
                         <span class="edu-cgpa">Certification</span>
                     </div>
@@ -391,10 +374,10 @@
             </div>
 
             <div class="experience-actions">
-                <a href="Anantha_kumar_cv (1).pdf" download class="btn btn-primary">
+                <a href="Anantha_kumar_cv (1).pdf" download class="btn-primary">
                     <i class="fas fa-download"></i> Download Resume (PDF)
                 </a>
-                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-ghost">
                     <i class="fas fa-eye"></i> View Full Resume
                 </a>
             </div>
@@ -402,38 +385,29 @@
     </section>
 
     <!-- ==================== CONTACT ==================== -->
-    <section id="contact" class="section contact">
+    <section id="contact" class="section reading-band">
         <div class="container">
             <span class="eyebrow">Connect</span>
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="heading-md">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's work together</h3>
+                    <p class="body-strong">Let's work together</p>
                     <p>
                         I'm currently seeking a <strong>Full Stack Web Development Internship</strong>.
                         If you have an opportunity or just want to say hello, I'd love to hear from you.
                     </p>
                     <div class="contact-items">
                         <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <span class="contact-label">Email</span>
-                                <a href="mailto:anantharengarajan98@zohomail.in">anantharengarajan98@zohomail.in</a>
-                            </div>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:anantharengarajan98@zohomail.in">anantharengarajan98@zohomail.in</a>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
-                            <div>
-                                <span class="contact-label">Phone</span>
-                                <a href="tel:+918754681172">+91-8754681172</a>
-                            </div>
+                            <span class="contact-label">Phone</span>
+                            <a href="tel:+918754681172">+91-8754681172</a>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
-                                <span class="contact-label">Location</span>
-                                <p>Trichy, Tamil Nadu, India</p>
-                            </div>
+                            <span class="contact-label">Location</span>
+                            <p>Trichy, Tamil Nadu, India</p>
                         </div>
                     </div>
                     <div class="social-links">
@@ -470,7 +444,7 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn--full">
+                    <button type="submit" class="btn-primary btn--full">
                         Send Message <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
@@ -480,9 +454,14 @@
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
-        <div class="container footer-container">
-            <p>&copy; 2026 Anantha Kumar M R. All rights reserved.</p>
-            <p class="footer-tagline">Built with <i class="fas fa-heart" style="color: #ed52cb;"></i> using vanilla HTML, CSS & JavaScript</p>
+        <div class="container footer-inner">
+            <div class="footer-links">
+                <a href="https://github.com/Parafounder01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:anantharengarajan98@zohomail.in">Email</a>
+                <a href="tel:+918754681172">Phone</a>
+                <a href="https://linkedin.com/in/anantha-kumar-m-r" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Anantha Kumar M R. All rights reserved.</p>
         </div>
     </footer>
 

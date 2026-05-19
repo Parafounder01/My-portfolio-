@@ -1,17 +1,16 @@
 /**
- * Anantha Kumar M R — Portfolio Scripts
- * Features: Mobile nav, scroll animations, active section tracking, contact form, 3D hero background
+ * Anantha Kumar M R — Portfolio Scripts (Runwai Design)
+ * Features: Mobile nav, scroll reveal, active section tracking, contact form
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ============================================================
-       1. NAVBAR — Mobile toggle + scroll shadow
+       1. NAVBAR — Mobile toggle
        ============================================================ */
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
-    const navbar = document.querySelector('.navbar');
 
     // Toggle mobile menu
     navToggle.addEventListener('click', () => {
@@ -28,15 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navToggle.setAttribute('aria-expanded', 'false');
         });
     });
-
-    // Add scrolled class to navbar
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }, { passive: true });
 
     /* ============================================================
        2. ACTIVE SECTION — Intersection Observer
@@ -64,27 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => sectionObserver.observe(section));
 
     /* ============================================================
-       3. SCROLL REVEAL — Fade-in on scroll
+       3. SCROLL REVEAL — Simple opacity fade-in
        ============================================================ */
     const revealElements = document.querySelectorAll(
         '.skill-category, .project-card, .timeline-item, .edu-card, ' +
-        '.stat-card, .detail-item, .contact-form, .contact-info'
+        '.stat-item, .detail-row, .contact-form, .contact-info'
     );
 
     const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Stagger delay for multiple items
-                const delay = Array.from(entry.target.parentNode.children)
-                    .indexOf(entry.target) * 80;
-                entry.target.style.transitionDelay = `${delay}ms`;
                 entry.target.classList.add('visible');
                 revealObserver.unobserve(entry.target);
             }
         });
     }, {
         root: null,
-        rootMargin: '0px 0px -80px 0px',
+        rootMargin: '0px 0px -60px 0px',
         threshold: 0.1
     });
 
@@ -127,19 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Basic validation
         if (!name || !email || !subject || !message) {
-            showFormMessage('Please fill in all fields.', 'error');
+            showFormMessage('Please fill in all fields.');
             return;
         }
 
         if (!isValidEmail(email)) {
-            showFormMessage('Please enter a valid email address.', 'error');
+            showFormMessage('Please enter a valid email address.');
             return;
         }
 
-        // Success (you can replace this with Formspree or similar)
+        // Success
         showFormMessage(
-            'Thank you for your message, ' + name.split(' ')[0] +
-            '! I will get back to you soon.',
+            'Thank you, ' + name.split(' ')[0] + '! I will get back to you soon.',
             'success'
         );
         contactForm.reset();
@@ -157,22 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageEl = document.createElement('div');
         messageEl.className = 'form-message';
         messageEl.textContent = msg;
-        messageEl.style.cssText = `
-            padding: 12px 16px;
-            border-radius: 4px;
-            font-size: 0.88rem;
-            margin-top: 16px;
-            text-align: center;
-            font-weight: 500;
-            animation: fadeInUp 0.3s ease forwards;
-            background: ${type === 'error'
-                ? 'rgba(237, 29, 54, 0.1)'
-                : 'rgba(0, 215, 34, 0.1)'};
-            color: ${type === 'error' ? '#ee1d36' : '#00d722'};
-            border: 1px solid ${type === 'error'
-                ? 'rgba(237, 29, 54, 0.2)'
-                : 'rgba(0, 215, 34, 0.2)'};
-        `;
 
         contactForm.appendChild(messageEl);
 
@@ -196,4 +165,5 @@ document.addEventListener('DOMContentLoaded', () => {
             navToggle.setAttribute('aria-expanded', 'false');
         }
     });
+
 });
