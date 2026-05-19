@@ -11,48 +11,6 @@
     box-sizing: border-box;
 }
 
-/* ---------- 3D BACKGROUND (Sketchfab Tux) ---------- */
-#bg3d {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;          /* allow clicks to pass through */
-    transition: transform 0.1s linear;
-    will-change: transform;
-}
-
-#bg3d iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 110vw;                  /* slightly oversize to hide edge gaps when rotated */
-    height: 110vh;
-    transform: translate(-50%, -50%);
-    border: 0;
-}
-
-/* Dark gradient overlay — ensures all text stays readable */
-.bg3d-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            180deg,
-            rgba(8, 8, 8, 0.92) 0%,
-            rgba(8, 8, 8, 0.50) 20%,
-            rgba(8, 8, 8, 0.35) 40%,
-            rgba(8, 8, 8, 0.50) 60%,
-            rgba(8, 8, 8, 0.85) 80%,
-            rgba(8, 8, 8, 1) 100%
-        );
-    pointer-events: none;
-    z-index: 1;
-}
-
 /* ---------- CUSTOM PROPERTIES ---------- */
 :root {
     /* Surface */
