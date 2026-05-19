@@ -1,6 +1,6 @@
 /**
  * Anantha Kumar M R — Portfolio Scripts
- * Features: Mobile nav, scroll animations, active section tracking, contact form
+ * Features: Mobile nav, scroll animations, active section tracking, contact form, 3D hero background
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -187,22 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ============================================================
-       6. PARALLAX PARTICLES — Subtle movement on scroll
+       6. KEYBOARD — Escape closes mobile nav
        ============================================================ */
-    const particles = document.querySelectorAll('.hero-particles span');
-    if (particles.length) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            particles.forEach((p, i) => {
-                const speed = 0.03 + (i * 0.01);
-                p.style.transform = `translateY(${scrollY * speed}px)`;
-            });
-        }, { passive: true });
-    }
-
-    /* ============================================================
-        7. KEYBOARD — Escape closes mobile nav
-        ============================================================ */
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
