@@ -21,8 +21,6 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;          /* allow clicks to pass through */
-    transition: transform 0.1s linear;
-    will-change: transform;
 }
 
 #bg3d iframe {

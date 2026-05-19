@@ -210,49 +210,4 @@ document.addEventListener('DOMContentLoaded', () => {
             navToggle.setAttribute('aria-expanded', 'false');
         }
     });
-
-    /* ============================================================
-       8. 3D BACKGROUND SCROLL ROTATION — Parallax effect
-       ============================================================ */
-    const bg3d = document.getElementById('bg3d');
-    const sketchIframe = document.querySelector('#bg3d iframe');
-    let apiReady = false;
-
-    // Detect when Sketchfab API is ready
-    if (sketchIframe) {
-        window.addEventListener('message', (e) => {
-            if (e.source === sketchIframe.contentWindow && e.data && e.data.type === 'ready') {
-                apiReady = true;
-            }
-        });
-    }
-
-    if (bg3d) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const maxScroll = Math.max(
-                document.documentElement.scrollHeight - window.innerHeight,
-                1
-            );
-            const scrollPercent = Math.min(scrollY / maxScroll, 1);
-
-            // Full 360° rotation over the entire scroll range
-            const angleDeg = scrollPercent * 360;
-            const angleRad = scrollPercent * Math.PI * 2;
-
-            // CSS 3D transform — rotates the entire scene container for a parallax feel
-            bg3d.style.transform = `rotateY(${angleDeg}deg)`;
-
-            // Sketchfab native API — rotates the actual 3D model in the viewer
-            if (apiReady && sketchIframe && sketchIframe.contentWindow) {
-                sketchIframe.contentWindow.postMessage({
-                    type: 'setCameraLookAt',
-                    data: {
-                        target: [0, 0, 0],
-                        rotation: [0, angleRad, 0]
-                    }
-                }, '*');
-            }
-        }, { passive: true });
-    }
 });
