@@ -861,7 +861,19 @@ a {
 .timeline-location {
     font-size: 14px;
     color: var(--color-slate);
+    margin-bottom: var(--space-1);
+}
+
+.timeline-context {
+    font-size: 14px;
+    color: var(--color-graphite);
+    line-height: 1.5;
     margin-bottom: var(--space-2);
+    padding-left: var(--space-1);
+    border-left: 2px solid var(--color-hairline-soft);
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-canvas-warm);
+    border-radius: var(--rounded-xs);
 }
 
 .timeline-bullets {
