@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChartBot — Learn SQL & Excel with Master Thalassos</title>
+
+    <!-- Fonts: PP Editorial Old (display) + Inter (UI) + JetBrains Mono (code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/pp-editorial-old" rel="stylesheet" />
+
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+    <style>
+        /* ============================================================
+           Mistral AI Design System — Applied to ChartBot
+           ============================================================ */
+
+        /* ---------- RESET ---------- */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ---------- CUSTOM PROPERTIES ---------- */
+        :root {
+            /* Brand & Accent */
+            --primary: #ff7a00;
+            --primary-deep: #e06a00;
+            --sunshine-300: #ffc489;
+            --sunshine-500: #ffa94d;
+            --sunshine-700: #ff8c1a;
+            --sunshine-800: #e67300;
+            --sunshine-900: #cc6600;
+            --yellow-saturated: #ffd700;
+            --block-5: #ffe4b5;
+            --block-6: #ffcc80;
+            --block-7: #ffb347;
+
+            /* Cream / Neutral Warm */
+            --cream: #fff8f0;
+            --cream-soft: #fffcf7;
+            --cream-deeper: #ffedd5;
+            --beige-deep: #e8d5c4;
+
+            /* Surface */
+            --canvas: #ffffff;
+            --surface: #fafafa;
+            --surface-cream: #fffaf3;
+            --surface-code: #1e1e2e;
+            --hairline: #e5e5e5;
+            --hairline-soft: #ececec;
+            --hairline-strong: #d0d0d0;
+
+            /* Text */
+            --ink: #0a0a0a;
+            --ink-tint: #333333;
+            --charcoal: #4a4a4a;
+            --slate: #6a6a6a;
+            --steel: #8a8a8a;
+            --stone: #aaaaaa;
+            --muted: #c0c0c0;
+            --on-dark: #ffffff;
+            --on-dark-muted: rgba(255,255,255,0.7);
+            --on-cream: #0a0a0a;
+            --link: #ff7a00;
+
+            /* Typography tokens */
+            --font-display: 'PP Editorial Old', 'Times New Roman', Georgia, serif;
+            --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+            --font-code: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+            /* Rounded */
+            --rounded-xs: 4px;
+            --rounded-sm: 6px;
+            --rounded-md: 8px;
+            --rounded-lg: 12px;
+            --rounded-xl: 16px;
+            --rounded-xxl: 20px;
+            --rounded-full: 9999px;
+
+            /* Spacing (4px base) */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-20: 80px;
+        }
+
+        /* ---------- GLOBAL ---------- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background: var(--canvas);
+            color: var(--ink);
+            line-height: 1.55;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- SUNSET STRIPE (brand signature) ---------- */
+        .sunset-stripe {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--sunshine-700) 25%, var(--sunshine-500) 50%, var(--yellow-saturated) 75%, var(--cream) 100%);
+            flex-shrink: 0;
+        }
+
+        /* ---------- NAV BAR ---------- */
+        .nav-bar {
+            background: var(--canvas);
+            border-bottom: 1px solid var(--hairline-soft);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 var(--space-8);
+            flex-shrink: 0;
+        }
+
+        .nav-bar-inner {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-bar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .nav-bar-brand .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: var(--rounded-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: var(--font-display);
+        }
+
+        .nav-bar-brand .brand-name {
+            font-family: var(--font-display);
+            font-size: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-bar-brand .brand-name span {
+            color: var(--primary);
+        }
+
+        .nav-bar-links {
+            display: flex;
+            gap: var(--space-6);
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-bar-links a {
+            text-decoration: none;
+            color: var(--slate);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .nav-bar-links a:hover {
+            color: var(--ink);
+        }
+
+        /* ---------- LAYOUT ---------- */
+        .app-layout {
+            display: flex;
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: var(--space-6) var(--space-8);
+            gap: var(--space-8);
+        }
+
+        /* ---------- SIDEBAR (Topic Nav) ---------- */
+        .sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .sidebar-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--steel);
+            padding: var(--space-2) var(--space-3);
+            margin-bottom: var(--space-1);
+        }
+
+        .topic-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: var(--space-2) var(--space-3);
+            border: none;
+            background: transparent;
+            border-radius: var(--rounded-md);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .topic-btn:hover {
+            background: var(--cream-soft);
+        }
+
+        .topic-btn.active {
+            background: var(--cream);
+            color: var(--ink);
+            font-weight: 500;
+            border: 1px solid var(--beige-deep);
+        }
+
+        .topic-btn .topic-icon {
+            margin-right: var(--space-2);
+            font-size: 14px;
+        }
+
+        /* ---------- MAIN CHAT AREA ---------- */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--cream-soft);
+            border-radius: var(--rounded-lg);
+            border: 1px solid var(--hairline-soft);
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            padding: var(--space-4) var(--space-6);
+            border-bottom: 1px solid var(--hairline-soft);
+            background: var(--canvas);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .chat-header-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: var(--rounded-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .chat-header-info h2 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: -0.3px;
+        }
+
+        .chat-header-info p {
+            font-size: 12px;
+            color: var(--steel);
+        }
+
+        .chat-header-status {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--steel);
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .chat-header-status .dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Messages */
+        .chat-messages {
+            flex: 1;
+            padding: var(--space-6);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .message {
+            max-width: 80%;
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--rounded-lg);
+            line-height: 1.6;
+            font-size: 15px;
+            animation: msgIn 0.3s ease;
+        }
+
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.teacher {
+            background: var(--canvas);
+            border: 1px solid var(--hairline-soft);
+            align-self: flex-start;
+            color: var(--ink);
+            border-bottom-left-radius: var(--rounded-xs);
+        }
+
+        .message.teacher .msg-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .message.learner {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: var(--rounded-xs);
+        }
+
+        .message code, .message .sql-block {
+            font-family: var(--font-code);
+            font-size: 13px;
+            background: var(--surface-code);
+            color: var(--on-dark);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--rounded-md);
+            display: block;
+            margin: var(--space-2) 0;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .message .analogy {
+            background: var(--cream);
+            border-left: 3px solid var(--primary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--rounded-sm);
+            margin: var(--space-2) 0;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .message .chart-container {
+            margin: var(--space-3) 0;
+            padding: var(--space-3);
+            background: var(--canvas);
+            border-radius: var(--rounded-md);
+            border: 1px solid var(--hairline-soft);
+        }
+
+        .message .chart-container canvas {
+            max-height: 200px;
+            max-width: 100%;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: var(--canvas);
+            border: 1px solid var(--hairline-soft);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--rounded-lg);
+            border-bottom-left-radius: var(--rounded-xs);
+        }
+
+        .typing-indicator.show {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--steel);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+        }
+
+        /* Chat Input */
+        .chat-input-area {
+            padding: var(--space-4) var(--space-6);
+            border-top: 1px solid var(--hairline-soft);
+            background: var(--canvas);
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: 1px solid var(--hairline-strong);
+            border-radius: var(--rounded-md);
+            padding: var(--space-2) var(--space-4);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            height: 44px;
+            outline: none;
+            transition: border-color 0.15s;
+            background: var(--canvas);
+        }
+
+        .chat-input-area input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+        }
+
+        .chat-input-area input::placeholder {
+            color: var(--stone);
+        }
+
+        .btn-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--rounded-md);
+            padding: 0 var(--space-5);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .btn-send:hover {
+            background: var(--primary-deep);
+        }
+
+        .btn-send:disabled {
+            background: var(--hairline);
+            color: var(--muted);
+            cursor: not-allowed;
+        }
+
+        /* ---------- PRACTICE MODE CARD ---------- */
+        .practice-card {
+            background: var(--cream);
+            border: 1px solid var(--beige-deep);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-6);
+            margin-top: var(--space-4);
+        }
+
+        .practice-card h3 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: var(--space-3);
+        }
+
+        .practice-card .exercise {
+            font-size: 15px;
+            margin-bottom: var(--space-3);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        .practice-card .exercise code {
+            font-family: var(--font-code);
+            background: var(--surface-code);
+            color: var(--on-dark);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .practice-card textarea {
+            width: 100%;
+            border: 1px solid var(--hairline-strong);
+            border-radius: var(--rounded-md);
+            padding: var(--space-3);
+            font-family: var(--font-code);
+            font-size: 13px;
+            min-height: 80px;
+            resize: vertical;
+            outline: none;
+            background: var(--canvas);
+        }
+
+        .practice-card textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+        }
+
+        .practice-card .practice-actions {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .practice-card .practice-actions button {
+            padding: var(--space-2) var(--space-5);
+            border-radius: var(--rounded-md);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: background 0.15s;
+        }
+
+        .btn-check {
+            background: var(--ink);
+            color: var(--on-dark);
+        }
+
+        .btn-check:hover {
+            background: #2a2a2a;
+        }
+
+        .btn-hint {
+            background: var(--canvas);
+            color: var(--ink);
+            border: 1px solid var(--hairline-strong) !important;
+        }
+
+        .btn-hint:hover {
+            background: var(--cream-soft);
+        }
+
+        .feedback {
+            margin-top: var(--space-3);
+            padding: var(--space-3);
+            border-radius: var(--rounded-md);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .feedback.success {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+        }
+
+        .feedback.hint {
+            background: var(--cream);
+            border-left: 3px solid var(--sunshine-500);
+        }
+
+        .feedback.error {
+            background: #fef2f2;
+            border-left: 3px solid #ef4444;
+        }
+
+        /* ---------- QUICK ACTIONS ---------- */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+        }
+
+        .quick-actions button {
+            padding: var(--space-1) var(--space-3);
+            border: 1px solid var(--hairline-soft);
+            border-radius: var(--rounded-full);
+            background: var(--canvas);
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--slate);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .quick-actions button:hover {
+            border-color: var(--primary);
+            color: var(--ink);
+        }
+
+        /* ---------- CHART SECTION ---------- */
+        .chart-section {
+            width: 320px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .chart-card {
+            background: var(--canvas);
+            border: 1px solid var(--hairline-soft);
+            border-radius: var(--rounded-lg);
+            padding: var(--space-4);
+        }
+
+        .chart-card h3 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: var(--space-3);
+            letter-spacing: -0.3px;
+        }
+
+        .chart-card canvas {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 180px;
+        }
+
+        .chart-card .chart-data-table {
+            margin-top: var(--space-3);
+            font-size: 12px;
+            color: var(--slate);
+        }
+
+        .chart-card .chart-data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .chart-card .chart-data-table th, .chart-card .chart-data-table td {
+            padding: var(--space-1) var(--space-2);
+            border-bottom: 1px solid var(--hairline-soft);
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .chart-card .chart-data-table th {
+            font-weight: 600;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---------- FOOTER + SUNSET STRIPE ---------- */
+        .footer {
+            background: var(--cream);
+            padding: var(--space-6) var(--space-8);
+            text-align: center;
+            font-size: 13px;
+            color: var(--slate);
+            border-top: 1px solid var(--beige-deep);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .chart-section {
+                display: none;
+            }
+            .sidebar {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-layout {
+                flex-direction: column;
+                padding: var(--space-4);
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: var(--space-1);
+            }
+            .sidebar .sidebar-label {
+                width: 100%;
+            }
+            .topic-btn {
+                width: auto;
+                font-size: 12px;
+                padding: var(--space-1) var(--space-3);
+            }
+            .message {
+                max-width: 95%;
+            }
+            .chat-area {
+                min-height: 450px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-bar {
+                padding: 0 var(--space-4);
+            }
+            .nav-bar-links {
+                display: none;
+            }
+            .app-layout {
+                padding: var(--space-3);
+            }
+            .chat-input-area {
+                flex-direction: column;
+                padding: var(--space-3);
+            }
+            .chat-input-area input {
+                width: 100%;
+            }
+            .btn-send {
+                width: 100%;
+                justify-content: center;
+                height: 44px;
+            }
+        }
+
+        /* ---------- SCROLLBAR ---------- */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--hairline);
+            border-radius: 3px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--stone);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== SUNSET STRIPE (top) ==================== -->
+    <div class="sunset-stripe"></div>
+
+    <!-- ==================== NAV BAR ==================== -->
+    <header class="nav-bar">
+        <div class="nav-bar-inner">
+            <a href="index.html" class="nav-bar-brand">
+                <div class="brand-icon">C</div>
+                <span class="brand-name">Chart<span>Bot</span></span>
+            </a>
+            <ul class="nav-bar-links">
+                <li><a href="index.html">Portfolio</a></li>
+                <li><a href="#" onclick="resetChat(); return false;">New Lesson</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ==================== APP LAYOUT ==================== -->
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <span class="sidebar-label">Topics</span>
+            <button class="topic-btn active" data-topic="sql-select">
+                <span class="topic-icon">🗂️</span> SQL: SELECT
+            </button>
+            <button class="topic-btn" data-topic="sql-where">
+                <span class="topic-icon">🔍</span> SQL: WHERE
+            </button>
+            <button class="topic-btn" data-topic="sql-count">
+                <span class="topic-icon">🔢</span> SQL: COUNT
+            </button>
+            <button class="topic-btn" data-topic="sql-groupby">
+                <span class="topic-icon">📊</span> SQL: GROUP BY
+            </button>
+            <button class="topic-btn" data-topic="sql-orderby">
+                <span class="topic-icon">📏</span> SQL: ORDER BY
+            </button>
+            <div style="margin: var(--space-3) 0; height: 1px; background: var(--hairline-soft);"></div>
+            <button class="topic-btn" data-topic="excel-sum">
+                <span class="topic-icon">🧮</span> Excel: SUM &amp; AVERAGE
+            </button>
+            <button class="topic-btn" data-topic="excel-charts">
+                <span class="topic-icon">📈</span> Excel: Charts
+            </button>
+            <button class="topic-btn" data-topic="excel-sort">
+                <span class="topic-icon">🔃</span> Excel: Sort &amp; Filter
+            </button>
+        </aside>
+
+        <!-- CHAT AREA -->
+        <main class="chat-area" id="chatArea">
+            <div class="chat-header">
+                <div class="chat-header-avatar">🧙</div>
+                <div class="chat-header-info">
+                    <h2>Master Thalassos</h2>
+                    <p>The 1,247-year-old Data Analysis Sage</p>
+                </div>
+                <div class="chat-header-status">
+                    <span class="dot"></span> Practice Mode
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages injected by JS -->
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span><span></span><span></span>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Ask a question or type your answer..." autofocus />
+                <button class="btn-send" id="btnSend" onclick="handleUserInput()">
+                    Send <span>→</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- CHART SECTION -->
+        <aside class="chart-section" id="chartSection">
+            <div class="chart-card">
+                <h3>📊 Data View</h3>
+                <canvas id="lessonChart"></canvas>
+                <div class="chart-data-table" id="chartDataTable">
+                    <table>
+                        <thead><tr><th>Item</th><th>Value</th></tr></thead>
+                        <tbody id="chartTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>🧠 Today's Analogy</h3>
+                <p id="currentAnalogy" style="font-size: 14px; color: var(--charcoal); line-height: 1.6; font-style: italic;">
+                    "A database table is like a filing cabinet drawer — each row is one index card, each column is one piece of information on every card."
+                </p>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- ==================== SUNSET STRIPE (bottom) ==================== -->
+    <div class="sunset-stripe"></div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <p>ChartBot &copy; 2026 — Built with warmth for slow learners. Everyone can learn data.</p>
+    </footer>
+
+    <script>
+        // ============================================================
+        // CHARTBOT — Master Thalassos Teaching Engine
+        // ============================================================
+
+        // ---------- STATE ----------
+        let lessonChart = null;
+        let currentTopic = 'sql-select';
+        let currentStep = 0;
+        let waitingForAnswer = false;
+        let currentExercise = null;
+
+        // ---------- DOM REFS ----------
+        const messagesEl = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const btnSend = document.getElementById('btnSend');
+        const typingEl = document.getElementById('typingIndicator');
+        const analogyEl = document.getElementById('currentAnalogy');
+        const chartTableBody = document.getElementById('chartTableBody');
+
+        // ---------- LESSON DATA ----------
+        const lessons = {
+            'sql-select': {
+                title: 'SQL: SELECT — Opening the Filing Cabinet',
+                greeting: 'Welcome, learner. Today we open the filing cabinet. In SQL, the way we "look at" a table is with the word SELECT. Think of it like saying "show me everything in this drawer."',
+                analogy: 'SELECT is like walking up to a filing cabinet, pulling open a drawer, and saying "show me every card in here." The table is the drawer, SELECT is your command to open it.',
+                example: 'Here is a tiny table called "sales":',
+                data: {
+                    headers: ['Flavor', 'Price', 'Sold'],
+                    rows: [
+                        ['Vanilla', '$3', '120'],
+                        ['Chocolate', '$3.50', '95'],
+                        ['Strawberry', '$4', '70'],
+                        ['Mango', '$3.50', '110'],
+                    ]
+                },
+                sql: 'SELECT * FROM sales;',
+                sqlExplain: 'The * means "all columns." So this says: show me every row and every column from the sales table.',
+                exercise: {
+                    question: 'Type a SQL query that shows ALL columns from a table called "products".',
+                    answer: 'SELECT * FROM products;',
+                    hints: ['Start with the word SELECT', 'Use * to mean "all columns"', 'FROM tells SQL which table'],
+                },
+                chart: {
+                    type: 'bar',
+                    labels: ['Vanilla', 'Chocolate', 'Strawberry', 'Mango'],
+                    values: [120, 95, 70, 110],
+                    label: 'Units Sold',
+                }
+            },
+            'sql-where': {
+                title: 'SQL: WHERE — The Filter',
+                greeting: 'Ah, welcome back, my friend. Now that you can open the cabinet, let us learn to find only what we need. The WHERE clause is your filter — like saying "only show me the vanilla cards."',
+                analogy: 'WHERE is like going through the filing cabinet and pulling out only the cards that say "Vanilla" on them. You are filtering the whole pile down to just what matches.',
+                example: 'From our sales table, what if we only want vanilla?',
+                data: {
+                    headers: ['Flavor', 'Price', 'Sold'],
+                    rows: [
+                        ['Vanilla', '$3', '120'],
+                        ['Chocolate', '$3.50', '95'],
+                        ['Strawberry', '$4', '70'],
+                        ['Mango', '$3.50', '110'],
+                    ]
+                },
+                sql: "SELECT * FROM sales WHERE flavor = 'Vanilla';",
+                sqlExplain: "WHERE flavor = 'Vanilla' means: only give me rows where the flavor column equals 'Vanilla'. Notice the single quotes around Vanilla — text values need quotes in SQL.",
+                exercise: {
+                    question: 'Write a query to select ALL columns from "products" where the category is "Electronics".',
+                    answer: "SELECT * FROM products WHERE category = 'Electronics';",
+                    hints: ['Start with SELECT * FROM products', 'Add WHERE category =', 'Text needs single quotes around it'],
+                },
+                chart: {
+                    type: 'bar',
+                    labels: ['Vanilla', 'Chocolate', 'Strawberry', 'Mango'],
+                    values: [120, 95, 70, 110],
+                    label: 'Units Sold (filtered)',
+                }
+            },
+            'sql-count': {
+                title: 'SQL: COUNT — How Many?',
+                greeting: 'Welcome, learner. Sometimes we do not need to see every detail — we just want to know: how many? That is what COUNT does. It is like asking "how many cards are in this pile?"',
+                analogy: 'Imagine you have a stack of index cards. You do not read each one — you just count them. COUNT does the same for rows in a table.',
+                example: 'How many flavors do we have in our sales table?',
+                data: {
+                    headers: ['Flavor', 'Price', 'Sold'],
+                    rows: [
+                        ['Vanilla', '$3', '120'],
+                        ['Chocolate', '$3.50', '95'],
+                        ['Strawberry', '$4', '70'],
+                        ['Mango', '$3.50', '110'],
+                    ]
+                },
+                sql: 'SELECT COUNT(*) FROM sales;',
+                sqlExplain: 'COUNT(*) counts every row in the table. The answer is 4 — because we have 4 flavors.',
+                exercise: {
+                    question: 'Write a query that counts how many products are in the "products" table.',
+                    answer: 'SELECT COUNT(*) FROM products;',
+                    hints: ['Use SELECT COUNT(*)', 'FROM tells SQL which table', 'FROM products'],
+                },
+                chart: {
+                    type: 'doughnut',
+                    labels: ['Vanilla', 'Chocolate', 'Strawberry', 'Mango'],
+                    values: [120, 95, 70, 110],
+                    label: 'Count Distribution',
+                }
+            },
+            'sql-groupby': {
+                title: 'SQL: GROUP BY — Sorting Coins into Piles',
+                greeting: 'Welcome. Today we learn to sort things into piles. GROUP BY is like taking a handful of mixed coins and grouping them — pennies here, nickels there, dimes over there.',
+                analogy: 'Imagine you have a box of fruit: apples, bananas, and oranges mixed together. GROUP BY would separate them into three piles so you can count how many of each you have.',
+                example: 'Let us group our sales by flavor and count how many of each were sold:',
+                data: {
+                    headers: ['Flavor', 'Sold'],
+                    rows: [
+                        ['Vanilla', '120'],
+                        ['Chocolate', '95'],
+                        ['Strawberry', '70'],
+                        ['Mango', '110'],
+                    ]
+                },
+                sql: 'SELECT flavor, COUNT(*) FROM sales GROUP BY flavor;',
+                sqlExplain: 'We SELECT the flavor column and COUNT. GROUP BY flavor means "make one pile for each unique flavor."',
+                exercise: {
+                    question: 'Write a query that groups products by "category" and counts how many are in each group.',
+                    answer: 'SELECT category, COUNT(*) FROM products GROUP BY category;',
+                    hints: ['SELECT category and COUNT(*)', 'FROM products', 'GROUP BY category'],
+                },
+                chart: {
+                    type: 'bar',
+                    labels: ['Vanilla', 'Chocolate', 'Strawberry', 'Mango'],
+                    values: [1, 1, 1, 1],
+                    label: 'Count per Flavor',
+                }
+            },
+            'sql-orderby': {
+                title: 'SQL: ORDER BY — Line Them Up',
+                greeting: 'Ah, welcome, learner. Now we learn to arrange things neatly. ORDER BY is like lining up children by height — shortest to tallest, or tallest to shortest.',
+                analogy: 'If you have a stack of papers and you want to sort them by date, you would shuffle through and put the oldest on top. ORDER BY does that automatically.',
+                example: 'Let us sort our sales from most sold to least:',
+                data: {
+                    headers: ['Flavor', 'Sold'],
+                    rows: [
+                        ['Vanilla', '120'],
+                        ['Chocolate', '95'],
+                        ['Strawberry', '70'],
+                        ['Mango', '110'],
+                    ]
+                },
+                sql: 'SELECT * FROM sales ORDER BY sold DESC;',
+                sqlExplain: 'ORDER BY sold DESC means "sort by the sold column, highest to lowest." ASC (ascending) would go lowest to highest.',
+                exercise: {
+                    question: 'Write a query to select all products sorted by price from lowest to highest.',
+                    answer: 'SELECT * FROM products ORDER BY price ASC;',
+                    hints: ['SELECT * FROM products', 'ORDER BY price', 'ASC for lowest to highest'],
+                },
+                chart: {
+                    type: 'bar',
+                    labels: ['Strawberry', 'Chocolate', 'Mango', 'Vanilla'],
+                    values: [70, 95, 110, 120],
+                    label: 'Sorted (ascending)',
+                }
+            },
+            'excel-sum': {
+                title: 'Excel: SUM & AVERAGE — The Built-in Calculator',
+                greeting: 'Welcome, my friend. Today we visit the magic grid — Excel. Every cell has an address, like B2 or C5. And Excel has built-in calculators called formulas. SUM adds everything up. AVERAGE finds the middle.',
+                analogy: 'SUM is like pouring all your coins into one big bucket and counting the total. AVERAGE is like "if we shared everything equally, how much would each person get?"',
+                example: 'Imagine you sold ice cream for a week:',
+                data: {
+                    headers: ['Day', 'Sales'],
+                    rows: [
+                        ['Monday', '$200'],
+                        ['Tuesday', '$150'],
+                        ['Wednesday', '$300'],
+                        ['Thursday', '$250'],
+                        ['Friday', '$400'],
+                    ]
+                },
+                sql: '=SUM(B2:B6)  =AVERAGE(B2:B6)',
+                sqlExplain: '=SUM(B2:B6) adds up all numbers in cells B2 through B6. =AVERAGE(B2:B6) finds the average. The colon (:) means "all cells between B2 and B6."',
+                exercise: {
+                    question: 'Write an Excel formula to find the total of cells C1 through C10.',
+                    answer: '=SUM(C1:C10)',
+                    hints: ['Formulas start with =', 'SUM adds numbers', 'Use colon : for a range like C1:C10'],
+                },
+                chart: {
+                    type: 'line',
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                    values: [200, 150, 300, 250, 400],
+                    label: 'Daily Sales ($)',
+                }
+            },
+            'excel-charts': {
+                title: 'Excel: Charts — Turn Numbers into Pictures',
+                greeting: 'Welcome, learner. Numbers are wonderful, but the human eye loves pictures. Charts turn your rows of numbers into bars, lines, or pie slices that you can understand at a glance.',
+                analogy: 'Imagine reading a list of temperatures for each month — now imagine seeing those temperatures as a line going up and down. The line tells you the story faster than the numbers ever could.',
+                example: 'Here are monthly sales. Can you see the pattern?',
+                data: {
+                    headers: ['Month', 'Sales'],
+                    rows: [
+                        ['Jan', '$1,200'],
+                        ['Feb', '$1,500'],
+                        ['Mar', '$1,800'],
+                        ['Apr', '$2,100'],
+                        ['May', '$2,400'],
+                    ]
+                },
+                sql: 'Select data → Insert → Chart → Choose type',
+                sqlExplain: 'In Excel: highlight your data, click "Insert", choose a chart type (bar, line, pie). Excel draws it for you.',
+                exercise: {
+                    question: 'In Excel, what is the first step to create a chart from your data?',
+                    answer: 'Select or highlight the data first',
+                    hints: ['You need to tell Excel WHAT data to use', 'Click and drag over your numbers', 'Then go to Insert > Chart'],
+                },
+                chart: {
+                    type: 'line',
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    values: [1200, 1500, 1800, 2100, 2400],
+                    label: 'Monthly Sales ($)',
+                }
+            },
+            'excel-sort': {
+                title: 'Excel: Sort & Filter — Find What You Need',
+                greeting: 'Welcome, my friend. In the magic grid, when you have too many rows, you need ways to find things quickly. Sort arranges your data in order. Filter hides everything except what matches.',
+                analogy: 'Sort is like alphabetizing your bookshelf. Filter is like pulling out only the red books and hiding the rest — they are still there, you just cannot see them.',
+                example: 'Look at this list of products:',
+                data: {
+                    headers: ['Product', 'Category', 'Price'],
+                    rows: [
+                        ['Laptop', 'Electronics', '$999'],
+                        ['Desk', 'Furniture', '$299'],
+                        ['Mouse', 'Electronics', '$25'],
+                        ['Chair', 'Furniture', '$449'],
+                        ['Keyboard', 'Electronics', '$79'],
+                    ]
+                },
+                sql: 'Data → Sort → Pick column. Data → Filter → Click dropdown → Uncheck items.',
+                sqlExplain: 'Sort: go to Data tab, click Sort, pick which column to sort by. Filter: click the Filter button, then use the dropdown arrows in each column header.',
+                exercise: {
+                    question: 'If you want to see ONLY products in the "Electronics" category in Excel, should you use Sort or Filter?',
+                    answer: 'Filter',
+                    hints: ['Sort rearranges everything', 'Filter hides what you do not want to see', 'You want to HIDE non-Electronics items'],
+                },
+                chart: {
+                    type: 'bar',
+                    labels: ['Laptop', 'Desk', 'Mouse', 'Chair', 'Keyboard'],
+                    values: [999, 299, 25, 449, 79],
+                    label: 'Price ($)',
+                }
+            }
+        };
+
+        // ---------- TEACHER PERSONA ----------
+        const teacherIntro = [
+            "Welcome, learner. I am Master Thalassos. I have been teaching data since before the printing press. Do not rush — we go one step at a time, and I will be here for every question.",
+            "Ah, a new student! Welcome, my friend. I have taught data to merchants in Alexandria and accountants in Beijing. You are in good hands. Let us begin simply.",
+            "Greetings, learner. Pull up a chair. In my 1,247 years, I have learned one thing: everyone can understand data if it is explained with patience. That is what we will do here."
+        ];
+
+        const teacherPraises = [
+            "Yes! That is exactly right. You are a natural, my friend.",
+            "Perfect! See? You understood it faster than you expected.",
+            "Well done! That is exactly correct. Let us keep going.",
+            "Ah, wonderful! You just wrote your first SQL query. How does it feel?",
+            "Exactly right. You are building your skills one block at a time."
+        ];
+
+        const teacherGentleErrors = [
+            "Hmm, not quite. Let me give you a hint: think about what comes after SELECT.",
+            "Almost! You are close. The structure is right but check the table name.",
+            "Ah, I see what happened. That is a common mistake. Let me explain why...",
+            "Good attempt! You have the right idea. Just check your spelling — SQL is very particular about names.",
+        ];
+
+        // ---------- INITIALIZATION ----------
+        function init() {
+            // Show welcome message
+            const welcomeIdx = Math.floor(Math.random() * teacherIntro.length);
+            addTeacherMessage(teacherIntro[welcomeIdx]);
+
+            // Add quick action buttons
+            addQuickActions();
+
+            // Start first lesson after a brief pause
+            setTimeout(() => {
+                startLesson('sql-select');
+            }, 800);
+        }
+
+        function addQuickActions() {
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'quick-actions';
+            const topics = [
+                { label: '📗 SQL Basics', topic: 'sql-select' },
+                { label: '🔍 WHERE clause', topic: 'sql-where' },
+                { label: '🔢 COUNT', topic: 'sql-count' },
+                { label: '🧮 Excel SUM', topic: 'excel-sum' },
+                { label: '📈 Excel Charts', topic: 'excel-charts' },
+            ];
+            topics.forEach(t => {
+                const btn = document.createElement('button');
+                btn.textContent = t.label;
+                btn.onclick = () => { switchTopic(t.topic); };
+                actionsDiv.appendChild(btn);
+            });
+            messagesEl.appendChild(actionsDiv);
+            scrollToBottom();
+        }
+
+        // ---------- LESSON ENGINE ----------
+        function startLesson(topicKey) {
+            currentTopic = topicKey;
+            const lesson = lessons[topicKey];
+            if (!lesson) return;
+
+            currentStep = 0;
+            waitingForAnswer = false;
+
+            // Mark sidebar active
+            document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.topic-btn[data-topic="${topicKey}"]`)?.classList.add('active');
+
+            // Show typing indicator then deliver lesson
+            showTyping(() => {
+                addTeacherMessage(`📚 **${lesson.title}**`);
+                addTeacherMessage(lesson.greeting);
+
+                // Analogy
+                const analogyMsg = document.createElement('div');
+                analogyMsg.className = 'message teacher';
+                analogyMsg.innerHTML = `<div class="msg-label">🧠 Analogy</div><div class="analogy">${lesson.analogy}</div>`;
+                messagesEl.appendChild(analogyMsg);
+                analogyEl.textContent = lesson.analogy;
+
+                // Show example data table
+                showDataTable(lesson.data);
+
+                // Show SQL example
+                setTimeout(() => {
+                    addTeacherMessage(`Now watch this:`);
+                    const codeMsg = document.createElement('div');
+                    codeMsg.className = 'message teacher';
+                    codeMsg.innerHTML = `<div class="msg-label">💻 SQL Example</div><div class="sql-block">${lesson.sql}</div><p style="margin-top: 8px; font-size: 14px; color: var(--charcoal);">${lesson.sqlExplain}</p>`;
+                    messagesEl.appendChild(codeMsg);
+
+                    // Show chart
+                    setTimeout(() => {
+                        renderChart(lesson.chart);
+
+                        // Practice exercise
+                        setTimeout(() => {
+                            showExercise(lesson.exercise);
+                        }, 800);
+                    }, 600);
+                }, 600);
+
+                scrollToBottom();
+            });
+        }
+
+        // ---------- DATA TABLE ----------
+        function showDataTable(data) {
+            // Table in chat
+            const tableDiv = document.createElement('div');
+            tableDiv.className = 'message teacher';
+            let html = '<div class="msg-label">📋 Example Data</div><div style="overflow-x:auto;">';
+            html += '<table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:8px;">';
+            html += '<thead><tr>';
+            data.headers.forEach(h => {
+                html += `<th style="padding:6px 10px; border-bottom:2px solid var(--hairline); text-align:left; font-weight:600;">${h}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+            data.rows.forEach(r => {
+                html += '<tr>';
+                r.forEach(c => {
+                    html += `<td style="padding:6px 10px; border-bottom:1px solid var(--hairline-soft);">${c}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</tbody></table></div>';
+            tableDiv.innerHTML = html;
+            messagesEl.appendChild(tableDiv);
+
+            // Sidebar table
+            let tableHtml = '';
+            data.rows.forEach(r => {
+                tableHtml += '<tr>';
+                r.forEach(c => { tableHtml += `<td>${c}</td>`; });
+                tableHtml += '</tr>';
+            });
+            chartTableBody.innerHTML = tableHtml;
+            scrollToBottom();
+        }
+
+        // ---------- EXERCISE ----------
+        function showExercise(exercise) {
+            currentExercise = exercise;
+            waitingForAnswer = true;
+
+            const card = document.createElement('div');
+            card.className = 'message teacher';
+            card.style.maxWidth = '100%';
+            card.innerHTML = `
+                <div class="practice-card">
+                    <h3>✏️ Practice Time</h3>
+                    <div class="exercise">${exercise.question}</div>
+                    <textarea id="practiceInput" placeholder="Type your answer here..." rows="3"></textarea>
+                    <div class="practice-actions">
+                        <button class="btn-check" onclick="checkAnswer()">Check Answer</button>
+                        <button class="btn-hint" onclick="showHint()">Hint</button>
+                    </div>
+                    <div id="practiceFeedback" class="feedback" style="display:none;"></div>
+                </div>
+            `;
+            messagesEl.appendChild(card);
+            scrollToBottom();
+
+            // Focus textarea after a short delay
+            setTimeout(() => {
+                const ta = document.getElementById('practiceInput');
+                if (ta) ta.focus();
+            }, 300);
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('practiceInput');
+            const feedback = document.getElementById('practiceFeedback');
+            if (!input || !feedback) return;
+
+            const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const correctAnswer = currentExercise.answer.toLowerCase().replace(/\s+/g, ' ');
+
+            // Normalize SQL (remove extra spaces)
+            const normalize = s => s.replace(/\s+/g, ' ').replace(/;\s*$/, '').trim();
+            const userNorm = normalize(userAnswer);
+            const correctNorm = normalize(correctAnswer);
+
+            let isCorrect = userNorm === correctNorm;
+
+            // Be generous — check if key parts match
+            if (!isCorrect) {
+                // For SQL exercises, check if key parts are there
+                const keyWords = correctNorm.split(' ');
+                const matchCount = keyWords.filter(w => userNorm.includes(w)).length;
+                if (matchCount >= keyWords.length * 0.6) {
+                    isCorrect = true;
+                }
+            }
+
+            feedback.style.display = 'block';
+
+            if (isCorrect) {
+                const praise = teacherPraises[Math.floor(Math.random() * teacherPraises.length)];
+                feedback.className = 'feedback success';
+                feedback.textContent = praise + ' The correct answer was: ' + currentExercise.answer;
+                waitingForAnswer = false;
+                chatInput.focus();
+
+                // Offer next step
+                setTimeout(() => {
+                    const nextMsg = document.createElement('div');
+                    nextMsg.className = 'message teacher';
+                    nextMsg.innerHTML = `
+                        <p>You did well, my friend. Let us move to the next topic, or you can keep practicing.</p>
+                        <div class="quick-actions">
+                            <button onclick="switchTopic('sql-where')">Next: WHERE →</button>
+                            <button onclick="switchTopic('sql-count')">Try COUNT</button>
+                            <button onclick="resetChat()">Start Over</button>
+                        </div>
+                    `;
+                    messagesEl.appendChild(nextMsg);
+                    scrollToBottom();
+                }, 500);
+
+            } else {
+                const errMsg = teacherGentleErrors[Math.floor(Math.random() * teacherGentleErrors.length)];
+                feedback.className = 'feedback error';
+                feedback.textContent = errMsg + ' Try again — you are close!';
+            }
+            scrollToBottom();
+        }
+
+        function showHint() {
+            const feedback = document.getElementById('practiceFeedback');
+            if (!feedback) return;
+            feedback.style.display = 'block';
+            feedback.className = 'feedback hint';
+            const hintIdx = Math.floor(Math.random() * currentExercise.hints.length);
+            feedback.textContent = '💡 Here is a clue: ' + currentExercise.hints[hintIdx];
+            scrollToBottom();
+        }
+
+        // ---------- CHART RENDER ----------
+        function renderChart(chartData) {
+            const ctx = document.getElementById('lessonChart').getContext('2d');
+
+            if (lessonChart) lessonChart.destroy();
+
+            const config = {
+                type: chartData.type || 'bar',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: chartData.label,
+                        data: chartData.values,
+                        backgroundColor: chartData.type === 'doughnut'
+                            ? ['#ff7a00', '#ffa94d', '#ffd700', '#ffe4b5', '#ff8c1a']
+                            : '#ff7a00',
+                        borderColor: chartData.type === 'doughnut'
+                            ? ['#fff', '#fff', '#fff', '#fff', '#fff']
+                            : '#e06a00',
+                        borderWidth: chartData.type === 'doughnut' ? 2 : 1,
+                        tension: 0.3,
+                        fill: chartData.type === 'line' ? true : false,
+                        backgroundColor: chartData.type === 'line'
+                            ? 'rgba(255, 122, 0, 0.1)'
+                            : chartData.type === 'doughnut' ? undefined : '#ff7a00',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: chartData.type === 'doughnut',
+                            position: 'bottom',
+                            labels: { font: { size: 10, family: 'Inter' } }
+                        }
+                    },
+                    scales: chartData.type !== 'doughnut' ? {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            ticks: { font: { size: 10, family: 'Inter' } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 10, family: 'Inter' } }
+                        }
+                    } : {}
+                }
+            };
+
+            lessonChart = new Chart(ctx, config);
+        }
+
+        // ---------- MESSAGE HELPERS ----------
+        function addTeacherMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message teacher';
+
+            // Handle markdown-style bold (**text**)
+            const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            div.innerHTML = `<div class="msg-label">🧙 Master Thalassos</div>${formatted}`;
+            messagesEl.appendChild(div);
+            scrollToBottom();
+        }
+
+        function addLearnerMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message learner';
+            div.textContent = text;
+            messagesEl.appendChild(div);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function showTyping(callback) {
+            typingEl.classList.add('show');
+            scrollToBottom();
+            setTimeout(() => {
+                typingEl.classList.remove('show');
+                if (callback) callback();
+            }, 1200);
+        }
+
+        // ---------- USER INPUT ----------
+        function handleUserInput() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            addLearnerMessage(text);
+            chatInput.value = '';
+
+            if (waitingForAnswer) {
+                // They might be answering the exercise — paste into the textarea
+                const ta = document.getElementById('practiceInput');
+                if (ta) {
+                    ta.value = text;
+                    checkAnswer();
+                    return;
+                }
+            }
+
+            // General conversation — respond as the teacher
+            showTyping(() => {
+                const lower = text.toLowerCase();
+                if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
+                    addTeacherMessage('Hello again, my friend! Would you like to continue with ' + lessons[currentTopic].title + ' or try something new?');
+                } else if (lower.includes('thank')) {
+                    addTeacherMessage('You are most welcome, learner. The joy of teaching is watching you grow. What shall we learn next?');
+                } else if (lower.includes('help') || lower.includes('stuck')) {
+                    addTeacherMessage('Do not worry, my friend. Let me give you a clue: ' + (currentExercise ? currentExercise.hints[0] : 'Start with SELECT and work through each part.'));
+                } else if (lower.includes('next') || lower.includes('continue')) {
+                    const topics = Object.keys(lessons);
+                    const idx = topics.indexOf(currentTopic);
+                    if (idx < topics.length - 1) {
+                        switchTopic(topics[idx + 1]);
+                    } else {
+                        addTeacherMessage('You have completed all topics, my friend! I am proud of you. You can review any topic from the sidebar.');
+                    }
+                } else if (lower.includes('sql') || lower.includes('select') || lower.includes('where')) {
+                    addTeacherMessage('Ah, you want to talk SQL. That is wonderful. Let us open the filing cabinet together. What would you like to practice?');
+                } else if (lower.includes('excel') || lower.includes('sum') || lower.includes('chart')) {
+                    addTeacherMessage('The magic grid! Excel is a wonderful tool. Let us explore it together. Pick a topic from the sidebar.');
+                } else {
+                    addTeacherMessage('That is an interesting thought, my friend. Would you like to try the ' + lessons[currentTopic].title + ' exercise, or pick a new topic from the sidebar?');
+                }
+            });
+        }
+
+        // ---------- TOPIC SWITCH ----------
+        function switchTopic(topicKey) {
+            const lesson = lessons[topicKey];
+            if (!lesson) return;
+
+            // Clear practice UI
+            const existingPractice = document.querySelector('.practice-card');
+            if (existingPractice) existingPractice.closest('.message')?.remove();
+
+            // Add transition message
+            addTeacherMessage('Ah, let us move to something new.');
+
+            setTimeout(() => {
+                startLesson(topicKey);
+            }, 600);
+        }
+
+        // ---------- RESET ----------
+        function resetChat() {
+            if (lessonChart) lessonChart.destroy();
+            messagesEl.innerHTML = '';
+            chartTableBody.innerHTML = '';
+            analogyEl.textContent = '"A database table is like a filing cabinet drawer..."';
+            currentTopic = 'sql-select';
+            currentExercise = null;
+            waitingForAnswer = false;
+
+            init();
+        }
+
+        // ---------- EVENT LISTENERS ----------
+        // Sidebar topic clicks
+        document.querySelectorAll('.topic-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchTopic(btn.dataset.topic);
+            });
+        });
+
+        // Send button
+        btnSend.addEventListener('click', handleUserInput);
+
+        // Enter key in input
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleUserInput();
+            }
+        });
+
+        // ---------- START ----------
+        init();
+    </script>
+</body>
+</html>
