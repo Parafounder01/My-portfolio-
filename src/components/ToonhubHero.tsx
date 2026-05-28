@@ -160,6 +160,24 @@ export default function ToonhubHero() {
           TOONHUB
         </div>
 
+        {/* Anantha Kumar M R — name overlay */}
+        <div
+          className="absolute inset-x-0 flex justify-center pointer-events-none select-none"
+          style={{
+            zIndex: 4,
+            bottom: isMobile ? '8%' : '6%',
+            fontFamily: "'Inter', sans-serif",
+            fontSize: isMobile ? '0.8rem' : '1rem',
+            fontWeight: 500,
+            color: '#000000',
+            opacity: 1,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase' as const,
+          }}
+        >
+          Anantha Kumar M R
+        </div>
+
         {/* Carousel */}
         <div className="absolute inset-0" style={{ zIndex: 3 }}>
           {IMAGES.map((img, i) => {
