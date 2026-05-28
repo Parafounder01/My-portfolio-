@@ -1006,10 +1006,14 @@ body::before {
 }
 
 .hero-photo-content .subtitle {
-    color: var(--color-slate);
+    color: #ffffff;
     margin-bottom: var(--space-3);
     font-weight: 400;
     min-height: 1.3em;
+}
+
+#typingText {
+    color: #ffffff;
 }
 
 .typing-cursor {
@@ -1028,7 +1032,7 @@ body::before {
 }
 
 .hero-photo-description {
-    color: var(--color-slate-soft);
+    color: #ffffff;
     font-size: 16px;
     line-height: 1.7;
     max-width: 560px;
