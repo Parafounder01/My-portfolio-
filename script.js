@@ -89,52 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ============================================================
-       3. NAVBAR — Mobile toggle + Scrolled state
-       ============================================================ */
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const navBar = document.querySelector('.nav-bar');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            const isOpen = navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-            navToggle.setAttribute('aria-expanded', isOpen);
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        if (navBar) {
-            if (scrollY > 50) {
-                navBar.classList.add('scrolled');
-            } else {
-                navBar.classList.remove('scrolled');
-            }
-        }
-        lastScroll = scrollY;
-    }, { passive: true });
-
-    /* ============================================================
-       4. ACTIVE SECTION — Intersection Observer
+       3. ACTIVE SECTION — Intersection Observer
        ============================================================ */
     const sections = document.querySelectorAll('section[id]');
 
@@ -159,50 +114,99 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => sectionObserver.observe(section));
 
     /* ============================================================
-       5. PARALLAX — Scroll-driven hero background
+       3. NAV BAR — Scroll shrink + background
        ============================================================ */
-    const heroParallaxLayer = document.querySelector('.hero-parallax-layer');
-    const heroPhoto = document.querySelector('.hero-photo');
-    const heroContent = document.querySelector('.hero-photo-content');
+    const navBar = document.querySelector('.nav-bar');
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    if (heroParallaxLayer && heroPhoto) {
-        window.addEventListener('scroll', () => {
-            const rect = heroPhoto.getBoundingClientRect();
-            const scrollProgress = 1 - (rect.bottom / (window.innerHeight + rect.height));
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !expanded);
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+        });
 
-            if (scrollProgress >= 0 && scrollProgress <= 1) {
-                const parallaxOffset = scrollProgress * 60;
-                heroParallaxLayer.style.transform = `translateY(${parallaxOffset}px)`;
-
-                if (heroContent) {
-                    const contentOpacity = Math.max(0, 1 - scrollProgress * 2);
-                    heroContent.style.opacity = contentOpacity;
-                }
-            }
-        }, { passive: true });
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('nav-open');
+            });
+        });
     }
 
     /* ============================================================
-       6. SCROLL PROGRESS BAR
+       4. UNIFIED SCROLL — rAF-throttled for all scroll-driven UIs
        ============================================================ */
-    let progressBar = document.getElementById('scrollProgress');
-    if (!progressBar) {
-        const bar = document.createElement('div');
-        bar.id = 'scrollProgress';
-        document.body.prepend(bar);
+    let ticking = false;
+
+    function onScroll() {
+        const scrollY = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollY / docHeight) : 0;
+
+        // Nav bar scrolled class
+        if (navBar) {
+            navBar.classList.toggle('scrolled', scrollY > 50);
+        }
+
+        // Scroll progress bar
+        const bar = document.getElementById('scrollProgress');
+        if (bar) bar.style.width = (progress * 100) + '%';
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            backToTop.classList.toggle('visible', scrollY > 500);
+            const progressCircle = document.querySelector('#backToTop .progress-ring circle');
+            if (progressCircle) {
+                const circumference = 138.23;
+                progressCircle.style.strokeDashoffset = circumference * (1 - progress);
+            }
+        }
+
+        // Hero parallax (skip on mobile)
+        const heroParallaxLayer = document.querySelector('.hero-parallax-layer');
+        const heroPhoto = document.querySelector('.hero-photo');
+        const heroContent = document.querySelector('.hero-photo-content');
+        if (heroParallaxLayer && heroPhoto && window.innerWidth > 768) {
+            const rect = heroPhoto.getBoundingClientRect();
+            const sp = Math.max(0, Math.min(1, 1 - (rect.bottom / (window.innerHeight + rect.height))));
+            heroParallaxLayer.style.transform = `translateY(${sp * 60}px)`;
+            if (heroContent) {
+                heroContent.style.opacity = Math.max(0, 1 - sp * 2);
+            }
+        }
+
+        // Section parallax (skip on mobile)
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.parallax-section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const speed = parseFloat(section.dataset.parallaxSpeed || 0.15);
+                    const bg = section.querySelector('.parallax-bg');
+                    if (bg) {
+                        bg.style.transform = `translateY(${(window.innerHeight - rect.top) * speed}px)`;
+                    }
+                }
+            });
+        }
+
+        ticking = false;
     }
 
     window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        const bar = document.getElementById('scrollProgress');
-        if (bar) bar.style.width = progress + '%';
+        if (!ticking) {
+            requestAnimationFrame(onScroll);
+            ticking = true;
+        }
     }, { passive: true });
 
     /* ============================================================
-       7. ENHANCED SCROLL REVEAL — Transform + Opacity
-       ============================================================ */
+       5. SCROLL REVEAL — Intersection Observer
     const revealElements = document.querySelectorAll(
         '.skill-category, .project-card, .timeline-item, .edu-card, ' +
         '.stat-item, .detail-row, .contact-form, .contact-info, ' +
@@ -491,7 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const particlesContainer = document.createElement('div');
             particlesContainer.id = 'heroParticles';
 
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 12; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
@@ -565,28 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ============================================================
-       18. PARALLAX SECTIONS — Subtle background shift
-       ============================================================ */
-    const parallaxSections = document.querySelectorAll('.parallax-section');
-
-    window.addEventListener('scroll', () => {
-        parallaxSections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-            if (isVisible) {
-                const speed = parseFloat(section.dataset.parallaxSpeed || 0.15);
-                const offset = (window.innerHeight - rect.top) * speed;
-                const bg = section.querySelector('.parallax-bg');
-                if (bg) {
-                    bg.style.transform = `translateY(${offset}px)`;
-                }
-            }
-        });
-    }, { passive: true });
-
-    /* ============================================================
-       19. REDUCED-MOTION CHECK
+       18. REDUCED-MOTION CHECK
        ============================================================ */
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {

@@ -255,7 +255,7 @@ body::before {
 }
 
 .eyebrow-on-dark {
-    color: var(--color-primary-light);
+    color: #ffffff;
 }
 
 .gradient-text {
@@ -735,6 +735,8 @@ body::before {
 .section {
     padding: var(--space-8) 0;
     position: relative;
+    content-visibility: auto;
+    contain: content;
 }
 
 .reading-band .container {
@@ -994,6 +996,8 @@ body::before {
     max-width: 720px;
     margin: 0 auto;
     animation: heroFadeIn 1.2s var(--ease-out) forwards;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 .hero-photo-content .display {
@@ -1020,7 +1024,7 @@ body::before {
     display: inline-block;
     width: 2px;
     height: 1.1em;
-    background: var(--color-primary-light);
+    background: #ffffff;
     margin-left: 2px;
     animation: blink 0.8s step-end infinite;
     vertical-align: text-bottom;
@@ -2047,6 +2051,31 @@ body::before {
     .filter-btn {
         font-size: 12px;
         padding: 6px 14px;
+    }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .particle,
+    .toast,
+    .custom-cursor,
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+
+    .hero-photo-content {
+        animation: none !important;
+        opacity: 1 !important;
     }
 }
 
