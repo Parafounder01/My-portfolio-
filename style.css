@@ -1,6 +1,6 @@
-/* ============================================================
-   PORTFOLIO STYLES — Premium Dark Design System v4
-   Anantha Kumar M R — Webflow-inspired dark theme
+﻿/* ============================================================
+   PORTFOLIO STYLES â€” Premium Dark Design System v4
+   Anantha Kumar M R â€” Webflow-inspired dark theme
    ============================================================ */
 
 /* ---------- RESET ---------- */
@@ -138,6 +138,10 @@ body {
     transition: background-color var(--duration-normal) var(--ease-out),
                 color var(--duration-normal) var(--ease-out);
     overflow-x: hidden;
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23000" d="M19.27 15.32 7.77 1.61A1 1 0 0 0 6 2.25v17.89a1 1 0 0 0 1.64.77l3.08-2.58 1.56 4.3a1 1 0 0 0 1.28.6l1.88-.68a1 1 0 0 0 .6-1.28l-1.56-4.3h4.02a1 1 0 0 0 .77-1.64Z"></path></svg>') 4 4, auto;
+}
+
+    display: none !important;
 }
 
 ::selection {
@@ -318,7 +322,6 @@ body::before {
 }
 
 /* ---------- CUSTOM CURSOR ---------- */
-.custom-cursor {
     position: fixed;
     pointer-events: none;
     z-index: 99998;
@@ -326,7 +329,6 @@ body::before {
     transition: none;
 }
 
-.cursor-dot {
     width: 8px;
     height: 8px;
     background: var(--color-primary);
@@ -338,7 +340,6 @@ body::before {
     transition: width 0.2s, height 0.2s, background 0.2s;
 }
 
-.cursor-ring {
     width: 36px;
     height: 36px;
     border: 2px solid var(--color-primary);
@@ -352,7 +353,6 @@ body::before {
     opacity: 0.6;
 }
 
-.cursor-ring.hover {
     width: 56px;
     height: 56px;
     border-color: var(--color-primary-light);
@@ -361,9 +361,6 @@ body::before {
 }
 
 @media (hover: none) and (pointer: coarse) {
-    .custom-cursor,
-    .cursor-dot,
-    .cursor-ring {
         display: none !important;
     }
 }
@@ -1872,9 +1869,6 @@ body::before {
         opacity: 1 !important;
     }
 
-    .custom-cursor,
-    .cursor-dot,
-    .cursor-ring {
         display: none !important;
     }
 
@@ -1889,7 +1883,7 @@ body::before {
 
 /* ---------- RESPONSIVE ---------- */
 
-/* Tablet (768–1024px) */
+/* Tablet (768â€“1024px) */
 @media (max-width: 1024px) {
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2067,9 +2061,6 @@ body::before {
 
     .particle,
     .toast,
-    .custom-cursor,
-    .cursor-dot,
-    .cursor-ring {
         display: none !important;
     }
 
@@ -2082,9 +2073,6 @@ body::before {
 /* ---------- PRINT ---------- */
 @media print {
     .nav-bar,
-    .custom-cursor,
-    .cursor-dot,
-    .cursor-ring,
     #preloader,
     #scrollProgress,
     #backToTop,

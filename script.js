@@ -40,55 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ============================================================
-       2. CUSTOM CURSOR — Glow dot + ring follower
-       ============================================================ */
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorRing = document.querySelector('.cursor-ring');
-
-    if (cursorDot && cursorRing) {
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-        });
-
-        function animateCursor() {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        const hoverTargets = document.querySelectorAll(
-            'a, button, .project-card, .skill-tag, .edu-card, .filter-btn, .theme-toggle, .social-link'
-        );
-
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursorDot.style.opacity = '0';
-            cursorRing.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursorDot.style.opacity = '1';
-            cursorRing.style.opacity = '0.6';
-        });
-
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            cursorDot.style.display = 'none';
-            cursorRing.style.display = 'none';
-        }
-    }
-
-    /* ============================================================
        3. ACTIVE SECTION — Intersection Observer
        ============================================================ */
     const sections = document.querySelectorAll('section[id]');
@@ -573,8 +524,6 @@ document.addEventListener('DOMContentLoaded', () => {
        ============================================================ */
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
-        if (cursorDot) cursorDot.style.display = 'none';
-        if (cursorRing) cursorRing.style.display = 'none';
         if (typingElement) {
             typingElement.textContent = 'Full Stack Web Developer';
         }
