@@ -1,85 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChartBot — Learn SQL & Excel with Master Thalassos</title>
 
-    <!-- Fonts: PP Editorial Old (display) + Inter (UI) + JetBrains Mono (code) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.cdnfonts.com/css/pp-editorial-old" rel="stylesheet" />
 
     <!-- Chart.js for visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
+    <link rel="stylesheet" href="style.css" />
+
     <style>
         /* ============================================================
-           Mistral AI Design System — Applied to ChartBot
+           ChartBot — Dark Theme Design (Portfolio-Aligned)
            ============================================================ */
 
-        /* ---------- RESET ---------- */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        /* ---------- CUSTOM PROPERTIES ---------- */
         :root {
-            /* Brand & Accent */
-            --primary: #ff7a00;
-            --primary-deep: #e06a00;
-            --sunshine-300: #ffc489;
-            --sunshine-500: #ffa94d;
-            --sunshine-700: #ff8c1a;
-            --sunshine-800: #e67300;
-            --sunshine-900: #cc6600;
-            --yellow-saturated: #ffd700;
-            --block-5: #ffe4b5;
-            --block-6: #ffcc80;
-            --block-7: #ffb347;
+            --primary: #8b5cf6;
+            --primary-deep: #6d28d9;
+            --primary-light: #a78bfa;
+            --primary-glow: rgba(139, 92, 246, 0.15);
+            --primary-subtle: rgba(139, 92, 246, 0.08);
 
-            /* Cream / Neutral Warm */
-            --cream: #fff8f0;
-            --cream-soft: #fffcf7;
-            --cream-deeper: #ffedd5;
-            --beige-deep: #e8d5c4;
+            --canvas: #0a0a0a;
+            --canvas-alt: #111111;
+            --surface: #1a1a1a;
+            --surface-hover: #222222;
+            --hairline: #2a2a2a;
+            --hairline-soft: #1e1e1e;
 
-            /* Surface */
-            --canvas: #ffffff;
-            --surface: #fafafa;
-            --surface-cream: #fffaf3;
-            --surface-code: #1e1e2e;
-            --hairline: #e5e5e5;
-            --hairline-soft: #ececec;
-            --hairline-strong: #d0d0d0;
-
-            /* Text */
-            --ink: #0a0a0a;
-            --ink-tint: #333333;
-            --charcoal: #4a4a4a;
-            --slate: #6a6a6a;
-            --steel: #8a8a8a;
-            --stone: #aaaaaa;
-            --muted: #c0c0c0;
+            --ink: #f0f0f0;
+            --ink-tint: #d4d4d4;
+            --charcoal: #a3a3a3;
+            --slate: #808080;
+            --steel: #6b6b6b;
+            --stone: #525252;
+            --muted: #404040;
             --on-dark: #ffffff;
             --on-dark-muted: rgba(255,255,255,0.7);
-            --on-cream: #0a0a0a;
-            --link: #ff7a00;
 
-            /* Typography tokens */
-            --font-display: 'PP Editorial Old', 'Times New Roman', Georgia, serif;
-            --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+            --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
             --font-code: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
-            /* Rounded */
             --rounded-xs: 4px;
             --rounded-sm: 6px;
-            --rounded-md: 8px;
-            --rounded-lg: 12px;
-            --rounded-xl: 16px;
+            --rounded-md: 10px;
+            --rounded-lg: 18px;
+            --rounded-xl: 24px;
             --rounded-xxl: 20px;
             --rounded-full: 9999px;
 
-            /* Spacing (4px base) */
             --space-1: 4px;
             --space-2: 8px;
             --space-3: 12px;
@@ -93,7 +69,6 @@
             --space-20: 80px;
         }
 
-        /* ---------- GLOBAL ---------- */
         html {
             scroll-behavior: smooth;
         }
@@ -108,23 +83,28 @@
             flex-direction: column;
         }
 
-        /* ---------- SUNSET STRIPE (brand signature) ---------- */
-        .sunset-stripe {
+        /* ===== PURPLE STRIPE ===== */
+        .brand-stripe {
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--sunshine-700) 25%, var(--sunshine-500) 50%, var(--yellow-saturated) 75%, var(--cream) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light), #c4b5fd, var(--primary));
             flex-shrink: 0;
         }
 
-        /* ---------- NAV BAR ---------- */
+        /* ===== NAV BAR ===== */
         .nav-bar {
-            background: var(--canvas);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--hairline-soft);
             height: 64px;
             display: flex;
             align-items: center;
             padding: 0 var(--space-8);
             flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .nav-bar-inner {
@@ -153,14 +133,13 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            font-family: var(--font-display);
         }
 
         .nav-bar-brand .brand-name {
-            font-family: var(--font-display);
             font-size: 20px;
+            font-weight: 600;
             letter-spacing: -0.3px;
         }
 
@@ -184,10 +163,10 @@
         }
 
         .nav-bar-links a:hover {
-            color: var(--ink);
+            color: var(--primary);
         }
 
-        /* ---------- LAYOUT ---------- */
+        /* ===== APP LAYOUT ===== */
         .app-layout {
             display: flex;
             flex: 1;
@@ -198,7 +177,7 @@
             gap: var(--space-8);
         }
 
-        /* ---------- SIDEBAR (Topic Nav) ---------- */
+        /* ===== SIDEBAR ===== */
         .sidebar {
             width: 240px;
             flex-shrink: 0;
@@ -234,14 +213,15 @@
         }
 
         .topic-btn:hover {
-            background: var(--cream-soft);
+            background: var(--surface);
+            color: var(--ink);
         }
 
         .topic-btn.active {
-            background: var(--cream);
-            color: var(--ink);
+            background: var(--primary-subtle);
+            color: var(--primary);
             font-weight: 500;
-            border: 1px solid var(--beige-deep);
+            border: 1px solid var(--primary-glow);
         }
 
         .topic-btn .topic-icon {
@@ -249,23 +229,22 @@
             font-size: 14px;
         }
 
-        /* ---------- MAIN CHAT AREA ---------- */
+        /* ===== CHAT AREA ===== */
         .chat-area {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: var(--cream-soft);
+            background: var(--canvas-alt);
             border-radius: var(--rounded-lg);
             border: 1px solid var(--hairline-soft);
             overflow: hidden;
             min-height: 600px;
         }
 
-        /* Chat Header */
         .chat-header {
             padding: var(--space-4) var(--space-6);
             border-bottom: 1px solid var(--hairline-soft);
-            background: var(--canvas);
+            background: var(--surface);
             display: flex;
             align-items: center;
             gap: var(--space-3);
@@ -285,10 +264,10 @@
         }
 
         .chat-header-info h2 {
-            font-family: var(--font-display);
             font-size: 18px;
-            font-weight: 400;
+            font-weight: 600;
             letter-spacing: -0.3px;
+            color: var(--ink);
         }
 
         .chat-header-info p {
@@ -338,7 +317,7 @@
         }
 
         .message.teacher {
-            background: var(--canvas);
+            background: var(--surface);
             border: 1px solid var(--hairline-soft);
             align-self: flex-start;
             color: var(--ink);
@@ -364,7 +343,7 @@
         .message code, .message .sql-block {
             font-family: var(--font-code);
             font-size: 13px;
-            background: var(--surface-code);
+            background: #1a1a2e;
             color: var(--on-dark);
             padding: var(--space-2) var(--space-3);
             border-radius: var(--rounded-md);
@@ -372,22 +351,24 @@
             margin: var(--space-2) 0;
             white-space: pre-wrap;
             line-height: 1.5;
+            border: 1px solid var(--hairline);
         }
 
         .message .analogy {
-            background: var(--cream);
+            background: var(--primary-subtle);
             border-left: 3px solid var(--primary);
             padding: var(--space-2) var(--space-3);
             border-radius: var(--rounded-sm);
             margin: var(--space-2) 0;
             font-style: italic;
             font-size: 14px;
+            color: var(--charcoal);
         }
 
         .message .chart-container {
             margin: var(--space-3) 0;
             padding: var(--space-3);
-            background: var(--canvas);
+            background: var(--surface);
             border-radius: var(--rounded-md);
             border: 1px solid var(--hairline-soft);
         }
@@ -401,7 +382,7 @@
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            background: var(--canvas);
+            background: var(--surface);
             border: 1px solid var(--hairline-soft);
             padding: var(--space-3) var(--space-4);
             border-radius: var(--rounded-lg);
@@ -433,27 +414,28 @@
         .chat-input-area {
             padding: var(--space-4) var(--space-6);
             border-top: 1px solid var(--hairline-soft);
-            background: var(--canvas);
+            background: var(--surface);
             display: flex;
             gap: var(--space-3);
         }
 
         .chat-input-area input {
             flex: 1;
-            border: 1px solid var(--hairline-strong);
+            border: 1px solid var(--hairline);
             border-radius: var(--rounded-md);
             padding: var(--space-2) var(--space-4);
             font-family: var(--font-ui);
             font-size: 14px;
             height: 44px;
             outline: none;
-            transition: border-color 0.15s;
+            transition: border-color 0.15s, box-shadow 0.15s;
             background: var(--canvas);
+            color: var(--ink);
         }
 
         .chat-input-area input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+            box-shadow: 0 0 0 3px var(--primary-glow);
         }
 
         .chat-input-area input::placeholder {
@@ -470,7 +452,7 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            transition: background 0.15s;
+            transition: background 0.15s, transform 0.15s;
             display: flex;
             align-items: center;
             gap: var(--space-2);
@@ -478,28 +460,30 @@
 
         .btn-send:hover {
             background: var(--primary-deep);
+            transform: translateY(-1px);
         }
 
         .btn-send:disabled {
-            background: var(--hairline);
-            color: var(--muted);
+            background: var(--muted);
+            color: var(--stone);
             cursor: not-allowed;
+            transform: none;
         }
 
-        /* ---------- PRACTICE MODE CARD ---------- */
+        /* ===== PRACTICE CARD ===== */
         .practice-card {
-            background: var(--cream);
-            border: 1px solid var(--beige-deep);
+            background: var(--surface);
+            border: 1px solid var(--hairline-soft);
             border-radius: var(--rounded-lg);
             padding: var(--space-6);
             margin-top: var(--space-4);
         }
 
         .practice-card h3 {
-            font-family: var(--font-display);
             font-size: 22px;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: var(--space-3);
+            color: var(--ink);
         }
 
         .practice-card .exercise {
@@ -511,16 +495,16 @@
 
         .practice-card .exercise code {
             font-family: var(--font-code);
-            background: var(--surface-code);
+            background: #1a1a2e;
             color: var(--on-dark);
             padding: 2px 8px;
-            border-radius: 4px;
+            border-radius: var(--rounded-xs);
             font-size: 13px;
         }
 
         .practice-card textarea {
             width: 100%;
-            border: 1px solid var(--hairline-strong);
+            border: 1px solid var(--hairline);
             border-radius: var(--rounded-md);
             padding: var(--space-3);
             font-family: var(--font-code);
@@ -529,11 +513,13 @@
             resize: vertical;
             outline: none;
             background: var(--canvas);
+            color: var(--ink);
+            transition: border-color 0.15s, box-shadow 0.15s;
         }
 
         .practice-card textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+            box-shadow: 0 0 0 3px var(--primary-glow);
         }
 
         .practice-card .practice-actions {
@@ -550,26 +536,26 @@
             font-weight: 500;
             cursor: pointer;
             border: none;
-            transition: background 0.15s;
+            transition: all 0.15s;
         }
 
         .btn-check {
-            background: var(--ink);
-            color: var(--on-dark);
+            background: var(--primary);
+            color: white;
         }
 
         .btn-check:hover {
-            background: #2a2a2a;
+            background: var(--primary-deep);
         }
 
         .btn-hint {
-            background: var(--canvas);
+            background: var(--surface);
             color: var(--ink);
-            border: 1px solid var(--hairline-strong) !important;
+            border: 1px solid var(--hairline) !important;
         }
 
         .btn-hint:hover {
-            background: var(--cream-soft);
+            background: var(--surface-hover);
         }
 
         .feedback {
@@ -581,21 +567,24 @@
         }
 
         .feedback.success {
-            background: #f0fdf4;
+            background: rgba(34, 197, 94, 0.1);
             border-left: 3px solid #22c55e;
+            color: var(--ink);
         }
 
         .feedback.hint {
-            background: var(--cream);
-            border-left: 3px solid var(--sunshine-500);
+            background: var(--primary-subtle);
+            border-left: 3px solid var(--primary);
+            color: var(--ink);
         }
 
         .feedback.error {
-            background: #fef2f2;
+            background: rgba(239, 68, 68, 0.1);
             border-left: 3px solid #ef4444;
+            color: var(--ink);
         }
 
-        /* ---------- QUICK ACTIONS ---------- */
+        /* ===== QUICK ACTIONS ===== */
         .quick-actions {
             display: flex;
             flex-wrap: wrap;
@@ -617,10 +606,11 @@
 
         .quick-actions button:hover {
             border-color: var(--primary);
-            color: var(--ink);
+            color: var(--primary);
+            background: var(--primary-subtle);
         }
 
-        /* ---------- CHART SECTION ---------- */
+        /* ===== CHART SECTION ===== */
         .chart-section {
             width: 320px;
             flex-shrink: 0;
@@ -630,18 +620,18 @@
         }
 
         .chart-card {
-            background: var(--canvas);
+            background: var(--surface);
             border: 1px solid var(--hairline-soft);
             border-radius: var(--rounded-lg);
             padding: var(--space-4);
         }
 
         .chart-card h3 {
-            font-family: var(--font-display);
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: var(--space-3);
             letter-spacing: -0.3px;
+            color: var(--ink);
         }
 
         .chart-card canvas {
@@ -676,17 +666,39 @@
             letter-spacing: 0.5px;
         }
 
-        /* ---------- FOOTER + SUNSET STRIPE ---------- */
+        #currentAnalogy {
+            font-size: 14px;
+            color: var(--charcoal);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* ===== FOOTER ===== */
         .footer {
-            background: var(--cream);
+            background: var(--canvas);
             padding: var(--space-6) var(--space-8);
             text-align: center;
             font-size: 13px;
             color: var(--slate);
-            border-top: 1px solid var(--beige-deep);
+            border-top: 1px solid var(--hairline);
         }
 
-        /* ---------- RESPONSIVE ---------- */
+        /* ===== SCROLLBAR ===== */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--hairline);
+            border-radius: 3px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--stone);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .chart-section {
                 display: none;
@@ -746,27 +758,12 @@
                 height: 44px;
             }
         }
-
-        /* ---------- SCROLLBAR ---------- */
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-        .chat-messages::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: var(--hairline);
-            border-radius: 3px;
-        }
-        .chat-messages::-webkit-scrollbar-thumb:hover {
-            background: var(--stone);
-        }
     </style>
 </head>
 <body>
 
-    <!-- ==================== SUNSET STRIPE (top) ==================== -->
-    <div class="sunset-stripe"></div>
+    <!-- ==================== BRAND STRIPE ==================== -->
+    <div class="brand-stripe"></div>
 
     <!-- ==================== NAV BAR ==================== -->
     <header class="nav-bar">
@@ -776,8 +773,8 @@
                 <span class="brand-name">Chart<span>Bot</span></span>
             </a>
             <ul class="nav-bar-links">
-                <li><a href="index.html">Portfolio</a></li>
-                <li><a href="#" onclick="resetChat(); return false;">New Lesson</a></li>
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Portfolio</a></li>
+                <li><a href="#" onclick="resetChat(); return false;"><i class="fas fa-redo"></i> New Lesson</a></li>
             </ul>
         </div>
     </header>
@@ -858,7 +855,7 @@
             </div>
             <div class="chart-card">
                 <h3>🧠 Today's Analogy</h3>
-                <p id="currentAnalogy" style="font-size: 14px; color: var(--charcoal); line-height: 1.6; font-style: italic;">
+                <p id="currentAnalogy">
                     "A database table is like a filing cabinet drawer — each row is one index card, each column is one piece of information on every card."
                 </p>
             </div>
@@ -866,8 +863,8 @@
 
     </div>
 
-    <!-- ==================== SUNSET STRIPE (bottom) ==================== -->
-    <div class="sunset-stripe"></div>
+    <!-- ==================== BRAND STRIPE (bottom) ==================== -->
+    <div class="brand-stripe"></div>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
@@ -877,6 +874,7 @@
     <script>
         // ============================================================
         // CHARTBOT — Master Thalassos Teaching Engine
+        // Preserved from original — all functionality intact
         // ============================================================
 
         // ---------- STATE ----------
@@ -982,7 +980,7 @@
             },
             'sql-groupby': {
                 title: 'SQL: GROUP BY — Sorting Coins into Piles',
-                greeting: 'Welcome. Today we learn to sort things into piles. GROUP BY is like taking a handful of mixed coins and grouping them — pennies here, nickels there, dimes over there.',
+                greeting: 'Welcome. Today we learn to sort things into piles. GROUP BY is like taking a handful of mixed coins and grouping them — pennies here, nickels here, dimes over there.',
                 analogy: 'Imagine you have a box of fruit: apples, bananas, and oranges mixed together. GROUP BY would separate them into three piles so you can count how many of each you have.',
                 example: 'Let us group our sales by flavor and count how many of each were sold:',
                 data: {
@@ -1149,14 +1147,9 @@
 
         // ---------- INITIALIZATION ----------
         function init() {
-            // Show welcome message
             const welcomeIdx = Math.floor(Math.random() * teacherIntro.length);
             addTeacherMessage(teacherIntro[welcomeIdx]);
-
-            // Add quick action buttons
             addQuickActions();
-
-            // Start first lesson after a brief pause
             setTimeout(() => {
                 startLesson('sql-select');
             }, 800);
@@ -1191,26 +1184,21 @@
             currentStep = 0;
             waitingForAnswer = false;
 
-            // Mark sidebar active
             document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.topic-btn[data-topic="${topicKey}"]`)?.classList.add('active');
 
-            // Show typing indicator then deliver lesson
             showTyping(() => {
                 addTeacherMessage(`📚 **${lesson.title}**`);
                 addTeacherMessage(lesson.greeting);
 
-                // Analogy
                 const analogyMsg = document.createElement('div');
                 analogyMsg.className = 'message teacher';
                 analogyMsg.innerHTML = `<div class="msg-label">🧠 Analogy</div><div class="analogy">${lesson.analogy}</div>`;
                 messagesEl.appendChild(analogyMsg);
                 analogyEl.textContent = lesson.analogy;
 
-                // Show example data table
                 showDataTable(lesson.data);
 
-                // Show SQL example
                 setTimeout(() => {
                     addTeacherMessage(`Now watch this:`);
                     const codeMsg = document.createElement('div');
@@ -1218,11 +1206,9 @@
                     codeMsg.innerHTML = `<div class="msg-label">💻 SQL Example</div><div class="sql-block">${lesson.sql}</div><p style="margin-top: 8px; font-size: 14px; color: var(--charcoal);">${lesson.sqlExplain}</p>`;
                     messagesEl.appendChild(codeMsg);
 
-                    // Show chart
                     setTimeout(() => {
                         renderChart(lesson.chart);
 
-                        // Practice exercise
                         setTimeout(() => {
                             showExercise(lesson.exercise);
                         }, 800);
@@ -1235,20 +1221,19 @@
 
         // ---------- DATA TABLE ----------
         function showDataTable(data) {
-            // Table in chat
             const tableDiv = document.createElement('div');
             tableDiv.className = 'message teacher';
             let html = '<div class="msg-label">📋 Example Data</div><div style="overflow-x:auto;">';
             html += '<table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:8px;">';
             html += '<thead><tr>';
             data.headers.forEach(h => {
-                html += `<th style="padding:6px 10px; border-bottom:2px solid var(--hairline); text-align:left; font-weight:600;">${h}</th>`;
+                html += `<th style="padding:6px 10px; border-bottom:2px solid var(--hairline); text-align:left; font-weight:600; color: var(--ink);">${h}</th>`;
             });
             html += '</tr></thead><tbody>';
             data.rows.forEach(r => {
                 html += '<tr>';
                 r.forEach(c => {
-                    html += `<td style="padding:6px 10px; border-bottom:1px solid var(--hairline-soft);">${c}</td>`;
+                    html += `<td style="padding:6px 10px; border-bottom:1px solid var(--hairline-soft); color: var(--charcoal);">${c}</td>`;
                 });
                 html += '</tr>';
             });
@@ -1256,7 +1241,6 @@
             tableDiv.innerHTML = html;
             messagesEl.appendChild(tableDiv);
 
-            // Sidebar table
             let tableHtml = '';
             data.rows.forEach(r => {
                 tableHtml += '<tr>';
@@ -1290,7 +1274,6 @@
             messagesEl.appendChild(card);
             scrollToBottom();
 
-            // Focus textarea after a short delay
             setTimeout(() => {
                 const ta = document.getElementById('practiceInput');
                 if (ta) ta.focus();
@@ -1305,16 +1288,13 @@
             const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
             const correctAnswer = currentExercise.answer.toLowerCase().replace(/\s+/g, ' ');
 
-            // Normalize SQL (remove extra spaces)
             const normalize = s => s.replace(/\s+/g, ' ').replace(/;\s*$/, '').trim();
             const userNorm = normalize(userAnswer);
             const correctNorm = normalize(correctAnswer);
 
             let isCorrect = userNorm === correctNorm;
 
-            // Be generous — check if key parts match
             if (!isCorrect) {
-                // For SQL exercises, check if key parts are there
                 const keyWords = correctNorm.split(' ');
                 const matchCount = keyWords.filter(w => userNorm.includes(w)).length;
                 if (matchCount >= keyWords.length * 0.6) {
@@ -1331,7 +1311,6 @@
                 waitingForAnswer = false;
                 chatInput.focus();
 
-                // Offer next step
                 setTimeout(() => {
                     const nextMsg = document.createElement('div');
                     nextMsg.className = 'message teacher';
@@ -1379,38 +1358,38 @@
                         label: chartData.label,
                         data: chartData.values,
                         backgroundColor: chartData.type === 'doughnut'
-                            ? ['#ff7a00', '#ffa94d', '#ffd700', '#ffe4b5', '#ff8c1a']
-                            : '#ff7a00',
+                            ? ['#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe', '#7c3aed']
+                            : chartData.type === 'line'
+                                ? 'rgba(139, 92, 246, 0.1)'
+                                : '#8b5cf6',
                         borderColor: chartData.type === 'doughnut'
-                            ? ['#fff', '#fff', '#fff', '#fff', '#fff']
-                            : '#e06a00',
+                            ? ['#1a1a1a', '#1a1a1a', '#1a1a1a', '#1a1a1a', '#1a1a1a']
+                            : '#7c3aed',
                         borderWidth: chartData.type === 'doughnut' ? 2 : 1,
                         tension: 0.3,
                         fill: chartData.type === 'line' ? true : false,
-                        backgroundColor: chartData.type === 'line'
-                            ? 'rgba(255, 122, 0, 0.1)'
-                            : chartData.type === 'doughnut' ? undefined : '#ff7a00',
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
+                    color: '#a3a3a3',
                     plugins: {
                         legend: {
                             display: chartData.type === 'doughnut',
                             position: 'bottom',
-                            labels: { font: { size: 10, family: 'Inter' } }
+                            labels: { font: { size: 10, family: 'Inter' }, color: '#a3a3a3' }
                         }
                     },
                     scales: chartData.type !== 'doughnut' ? {
                         y: {
                             beginAtZero: true,
-                            grid: { color: 'rgba(0,0,0,0.05)' },
-                            ticks: { font: { size: 10, family: 'Inter' } }
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { font: { size: 10, family: 'Inter' }, color: '#a3a3a3' }
                         },
                         x: {
                             grid: { display: false },
-                            ticks: { font: { size: 10, family: 'Inter' } }
+                            ticks: { font: { size: 10, family: 'Inter' }, color: '#a3a3a3' }
                         }
                     } : {}
                 }
@@ -1423,8 +1402,6 @@
         function addTeacherMessage(text) {
             const div = document.createElement('div');
             div.className = 'message teacher';
-
-            // Handle markdown-style bold (**text**)
             const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             div.innerHTML = `<div class="msg-label">🧙 Master Thalassos</div>${formatted}`;
             messagesEl.appendChild(div);
@@ -1461,7 +1438,6 @@
             chatInput.value = '';
 
             if (waitingForAnswer) {
-                // They might be answering the exercise — paste into the textarea
                 const ta = document.getElementById('practiceInput');
                 if (ta) {
                     ta.value = text;
@@ -1470,7 +1446,6 @@
                 }
             }
 
-            // General conversation — respond as the teacher
             showTyping(() => {
                 const lower = text.toLowerCase();
                 if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
@@ -1502,11 +1477,9 @@
             const lesson = lessons[topicKey];
             if (!lesson) return;
 
-            // Clear practice UI
             const existingPractice = document.querySelector('.practice-card');
             if (existingPractice) existingPractice.closest('.message')?.remove();
 
-            // Add transition message
             addTeacherMessage('Ah, let us move to something new.');
 
             setTimeout(() => {
@@ -1528,17 +1501,14 @@
         }
 
         // ---------- EVENT LISTENERS ----------
-        // Sidebar topic clicks
         document.querySelectorAll('.topic-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 switchTopic(btn.dataset.topic);
             });
         });
 
-        // Send button
         btnSend.addEventListener('click', handleUserInput);
 
-        // Enter key in input
         chatInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();

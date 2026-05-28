@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,32 +12,124 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy: #1a1a2e;
-            --dark-blue: #16213e;
-            --card-bg: #1f2b47;
-            --green: #468432;
-            --light-green: #9AD872;
-            --yellow: #FFEF91;
-            --orange: #FFA02E;
+            --primary: #8b5cf6;
+            --primary-deep: #6d28d9;
+            --primary-light: #a78bfa;
+            --primary-glow: rgba(139, 92, 246, 0.15);
+            --primary-subtle: rgba(139, 92, 246, 0.08);
+
+            --canvas: #0a0a0a;
+            --canvas-alt: #111111;
+            --surface: #1a1a1a;
+            --surface-hover: #222222;
+            --hairline: #2a2a2a;
+            --hairline-soft: #1e1e1e;
+
+            --ink: #f0f0f0;
+            --ink-tint: #d4d4d4;
+            --charcoal: #a3a3a3;
+            --slate: #808080;
+            --steel: #6b6b6b;
+            --stone: #525252;
+            --muted: #404040;
+
+            --green: #22c55e;
+            --yellow: #facc15;
+            --orange: #f59e0b;
             --white: #ffffff;
-            --gray: #b0b0b0;
-            --text-light: #e8e8e8;
+            --gray: #a3a3a3;
         }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--navy);
-            color: var(--text-light);
+            background: var(--canvas);
+            color: var(--ink);
             line-height: 1.6;
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 30px;
         }
 
+        /* ===== NAV BAR ===== */
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--hairline);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .nav-back:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-print {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+
+        .btn-print:hover {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: transparent;
+            color: var(--ink);
+            border: 1px solid var(--hairline);
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+
+        .btn-ghost-nav:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ===== HEADER ===== */
         .header {
             text-align: center;
             padding-bottom: 30px;
-            border-bottom: 3px solid var(--green);
+            border-bottom: 3px solid var(--primary);
             margin-bottom: 30px;
         }
 
@@ -50,7 +142,7 @@
 
         .header .subtitle {
             font-size: 1.1rem;
-            color: var(--light-green);
+            color: var(--primary-light);
             margin-bottom: 12px;
         }
 
@@ -64,42 +156,45 @@
         }
 
         .contact-bar span { display: flex; align-items: center; gap: 6px; }
-        .contact-bar a { color: var(--orange); text-decoration: none; }
-        .contact-bar a:hover { color: var(--light-green); }
-        .contact-bar i { color: var(--green); font-size: 0.9rem; }
+        .contact-bar a { color: var(--primary-light); text-decoration: none; }
+        .contact-bar a:hover { color: var(--primary); }
+        .contact-bar i { color: var(--primary); font-size: 0.9rem; }
 
+        /* ===== SUMMARY ===== */
         .summary {
-            background: var(--dark-blue);
+            background: var(--surface);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 30px;
-            border-left: 4px solid var(--teal);
+            border-left: 4px solid var(--primary);
         }
 
         .summary p {
-            color: var(--gray);
+            color: var(--charcoal);
             font-size: 0.95rem;
         }
 
+        /* ===== SECTIONS ===== */
         h2 {
             font-size: 1.3rem;
             color: var(--white);
             margin-bottom: 15px;
             padding-bottom: 8px;
-            border-bottom: 2px solid var(--green);
+            border-bottom: 2px solid var(--primary);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        h2 i { color: var(--light-green); font-size: 1.1rem; }
+        h2 i { color: var(--primary-light); font-size: 1.1rem; }
 
         .section { margin-bottom: 30px; }
 
+        /* ===== EXPERIENCE / EDUCATION ===== */
         .experience-item, .education-item {
             margin-bottom: 20px;
             padding-left: 20px;
-            border-left: 2px solid var(--card-bg);
+            border-left: 2px solid var(--hairline);
             position: relative;
         }
 
@@ -110,7 +205,7 @@
             top: 5px;
             width: 10px;
             height: 10px;
-            background: var(--green);
+            background: var(--primary);
             border-radius: 50%;
         }
 
@@ -130,7 +225,7 @@
 
         .exp-header .date {
             font-size: 0.85rem;
-            color: var(--yellow);
+            color: var(--primary-light);
             font-weight: 500;
         }
 
@@ -142,7 +237,7 @@
 
         ul { list-style: none; padding-left: 0; }
         ul li {
-            color: var(--gray);
+            color: var(--charcoal);
             font-size: 0.9rem;
             margin-bottom: 4px;
             padding-left: 15px;
@@ -152,9 +247,10 @@
             content: '▹';
             position: absolute;
             left: 0;
-            color: var(--light-green);
+            color: var(--primary-light);
         }
 
+        /* ===== SKILLS ===== */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -162,14 +258,19 @@
         }
 
         .skill-card {
-            background: var(--dark-blue);
+            background: var(--surface);
             padding: 15px;
             border-radius: 8px;
-            border: 1px solid var(--card-bg);
+            border: 1px solid var(--hairline-soft);
+            transition: border-color 0.15s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary-subtle);
         }
 
         .skill-card h4 {
-            color: var(--light-green);
+            color: var(--primary-light);
             font-size: 0.85rem;
             margin-bottom: 8px;
             text-transform: uppercase;
@@ -183,20 +284,21 @@
         }
 
         .skill-badge {
-            background: rgba(70, 132, 50, 0.15);
-            color: var(--orange);
+            background: var(--primary-subtle);
+            color: var(--primary-light);
             padding: 3px 10px;
             border-radius: 15px;
             font-size: 0.75rem;
-            border: 1px solid rgba(70, 132, 50, 0.3);
+            border: 1px solid var(--primary-glow);
         }
 
+        /* ===== CERTIFICATIONS ===== */
         .cert-item {
-            background: var(--dark-blue);
+            background: var(--surface);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 10px;
-            border-left: 3px solid var(--yellow);
+            border-left: 3px solid var(--primary);
         }
 
         .cert-item h4 {
@@ -206,53 +308,86 @@
         }
 
         .cert-item p {
-            color: var(--gray);
+            color: var(--charcoal);
             font-size: 0.85rem;
         }
 
         .cert-item .cert-date {
-            color: var(--yellow);
+            color: var(--primary-light);
             font-size: 0.8rem;
             margin-top: 4px;
         }
 
+        /* ===== BOTTOM ACTIONS ===== */
+        .bottom-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--hairline);
+        }
+
+        /* ===== PRINT ===== */
         @media print {
             body {
-                background: white;
-                color: #1a1a2e;
+                background: white !important;
+                color: #1a1a2e !important;
                 padding: 20px;
             }
+
+            .nav-bar { display: none; }
+            .bottom-actions { display: none; }
+
             .header h1, h2, .exp-header h3, h4 { color: #1a1a2e !important; }
-            .header .subtitle, .company, h2 i { color: #468432 !important; }
+            .header .subtitle, .company, h2 i { color: #7c3aed !important; }
             .contact-bar span { color: #333 !important; }
-            .contact-bar a { color: #468432 !important; }
-            .contact-bar i { color: #9AD872 !important; }
-            .summary { background: #f5f5f5; border-color: #9AD872; }
+            .contact-bar a { color: #7c3aed !important; }
+            .contact-bar i { color: #8b5cf6 !important; }
+            .summary { background: #f5f5f5; border-color: #8b5cf6; }
             .summary p { color: #333; }
-            .exp-header .date { color: #468432 !important; }
+            .exp-header .date { color: #7c3aed !important; }
             ul li { color: #333; }
-            ul li::before { color: #9AD872; }
+            ul li::before { color: #8b5cf6; }
             .skill-card { background: #f5f5f5; border-color: #ddd; }
-            .skill-card h4 { color: #16213e !important; }
-            .skill-badge { background: #e8f5e9; color: #468432; border-color: #468432; }
-            .cert-item { background: #f5f5f5; border-color: #FFEF91; }
+            .skill-card h4 { color: #1a1a2e !important; }
+            .skill-badge { background: #f0eef8; color: #7c3aed; border-color: #7c3aed; }
+            .cert-item { background: #f5f5f5; border-color: #8b5cf6; }
             .cert-item h4 { color: #1a1a2e !important; }
             .cert-item p { color: #333; }
-            .cert-item .cert-date { color: #468432 !important; }
+            .cert-item .cert-date { color: #7c3aed !important; }
             .experience-item, .education-item { border-left-color: #ddd; }
-            .experience-item::before, .education-item::before { background: #468432; }
-            h2 { border-bottom-color: #468432 !important; }
-            .header { border-bottom-color: #468432 !important; }
+            .experience-item::before, .education-item::before { background: #7c3aed; }
+            h2 { border-bottom-color: #7c3aed !important; }
+            .header { border-bottom-color: #7c3aed !important; }
         }
 
         @media (max-width: 600px) {
             .skills-grid { grid-template-columns: repeat(2, 1fr); }
             body { padding: 20px 15px; }
             .header h1 { font-size: 1.8rem; }
+            .nav-bar { flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== NAV BAR ===== -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-back">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+        <div class="nav-actions">
+            <a href="index.html#experience" class="btn-ghost-nav">
+                <i class="fas fa-briefcase"></i> Experience
+            </a>
+            <button class="btn-print" onclick="window.print()">
+                <i class="fas fa-print"></i> Print
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
     <div class="header">
         <h1>ANANTHA KUMAR M R</h1>
         <p class="subtitle">Full Stack Web Developer | IT Operations Professional</p>
@@ -264,10 +399,12 @@
         </div>
     </div>
 
+    <!-- ===== SUMMARY ===== -->
     <div class="summary">
         <p>Results-driven Technical Professional with B.E. in Electronics and Communication Engineering and 1.5+ years of hands-on experience in IT operations, system administration, and data analysis. Skilled in MS Excel, SQL, Python, Linux, and web development. Proven ability to make real-time operational decisions, manage 24/7 infrastructure, and communicate effectively with stakeholders.</p>
     </div>
 
+    <!-- ===== EXPERIENCE ===== -->
     <div class="section">
         <h2><i class="fas fa-briefcase"></i> EXPERIENCE</h2>
 
@@ -314,6 +451,7 @@
         </div>
     </div>
 
+    <!-- ===== SKILLS ===== -->
     <div class="section">
         <h2><i class="fas fa-code"></i> TECHNICAL SKILLS</h2>
         <div class="skills-grid">
@@ -376,6 +514,7 @@
         </div>
     </div>
 
+    <!-- ===== EDUCATION ===== -->
     <div class="section">
         <h2><i class="fas fa-graduation-cap"></i> EDUCATION</h2>
         <div class="education-item">
@@ -394,6 +533,7 @@
         </div>
     </div>
 
+    <!-- ===== CERTIFICATIONS ===== -->
     <div class="section">
         <h2><i class="fas fa-certificate"></i> CERTIFICATIONS</h2>
         <div class="cert-item">
@@ -402,5 +542,24 @@
             <p class="cert-date">Dec 2022 - July 2023</p>
         </div>
     </div>
+
+    <!-- ===== BOTTOM ACTIONS ===== -->
+    <div class="bottom-actions">
+        <a href="Anantha_kumar_cv (1).pdf" download class="btn-print">
+            <i class="fas fa-download"></i> Download PDF
+        </a>
+        <a href="index.html" class="btn-ghost-nav">
+            <i class="fas fa-home"></i> Portfolio Home
+        </a>
+    </div>
+
+    <script>
+        // Print handling
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'p') {
+                // Allow native print dialog
+            }
+        });
+    </script>
 </body>
 </html>
